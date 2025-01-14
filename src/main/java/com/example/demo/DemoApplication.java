@@ -13,7 +13,7 @@ public class DemoApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args){
 		System.out.println("\n\n este es el main de la mierda de spring");
 		ApiRequest apiRequest = new ApiRequest();
 		String json = apiRequest.obtenerDatos("Inception");
