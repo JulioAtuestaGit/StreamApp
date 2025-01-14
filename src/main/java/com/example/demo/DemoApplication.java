@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.services.ApiRequest;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +16,7 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("\n\n este es el main de la mierda de spring");
 		ApiRequest apiRequest = new ApiRequest();
-		String json = apiRequest.obtenerDatos("Dracula");
+		String json = apiRequest.obtenerDatos("Inception");
 		System.out.println(json);
 	}
 }
