@@ -13,5 +13,4 @@ public class JsonClass {
     private int duration;
     @JsonAlias("Plot")
     private String description;
-
 }
