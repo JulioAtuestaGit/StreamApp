@@ -41,7 +41,7 @@ public final class InputHandler {
                 break;
         }
 
-        String json = apiRequest.obtenerDatos(userRequest);//solo busca el titulo 
+        String json = apiRequest.obtenerDatos(userRequest);//solo busca el titulo cambiar para buscar por temporada en caso de ser serie o por keywords o director
         Production jsonMapped = mapper.readValue(json,Production.class);
         System.out.println(jsonMapped.toString());
     }

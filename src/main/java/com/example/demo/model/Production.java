@@ -33,6 +33,9 @@ public class Production {
     public String getDirector() {return director;}
     public String getActors() {return actors;}
 
+    public void play(){
+        System.out.println("Now playing :"+getTitle());
+    }
     @Override
     public String toString() {
         return "Title: "+title
