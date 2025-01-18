@@ -1,8 +1,8 @@
 package com.example.demo.services;
 
-import com.example.demo.model.JsonClass;
+import com.example.demo.model.Production;
 
 public class Conversor {
-    public JsonClass jsonClass = new JsonClass();
+    public Production production = new Production();
 
 }
