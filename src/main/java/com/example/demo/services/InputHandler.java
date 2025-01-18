@@ -3,7 +3,6 @@ package com.example.demo.services;
 import com.example.demo.model.Production;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.Scanner;
 
 public final class InputHandler {
