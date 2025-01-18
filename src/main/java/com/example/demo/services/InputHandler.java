@@ -14,18 +14,34 @@ public final class InputHandler {
         ObjectMapper mapper = new ObjectMapper();
         /*Entrada mover a clase*/
         System.out.println("""
-				Selecciona el tipo de busqueda:
+				Selecciona search type :
 				1 - Pelicula
 				2 - Serie
+				3 - Episode
+				4 - Keywords
 				""");
-        if (scanner.nextInt() == 1){
-            System.out.println("Ingresa el nombre de la Pelicula que deseas buscar :");
-            userRequest=scanner.nextLine();
-        } else if (scanner.nextInt() == 2) {
-            System.out.println("Ingresa el nombre de la Eerie que deseas buscar :");
-            userRequest=scanner.nextLine();
+        userSelection = scanner.nextInt();
+        switch (userSelection){
+            case 1:
+                System.out.println("Ingresa el nombre de la Pelicula que deseas buscar :");
+                userRequest=scanner.nextLine();
+                break;
+
+            case 2:
+                System.out.println("Ingresa el nombre de la Serie que deseas buscar :");
+                userRequest=scanner.nextLine();
+                break;
+            case 3:
+                System.out.println("Ingresa el nombre del Episodio que deseas buscar :");
+                userRequest=scanner.nextLine();
+                break;
+            case 4:
+                System.out.println("Ingresa pala clave que deseas buscar :");
+                userRequest=scanner.nextLine();
+                break;
         }
-        String json = apiRequest.obtenerDatos(userRequest);
+
+        String json = apiRequest.obtenerDatos(userRequest);//solo busca el titulo 
         Production jsonMapped = mapper.readValue(json,Production.class);
         System.out.println(jsonMapped.toString());
     }
