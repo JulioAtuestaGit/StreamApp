@@ -1,15 +1,17 @@
 package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonClass {
     @JsonAlias("Title")//Json alias only reading // Jsonproperty also writing
     private String title;
     @JsonAlias("Genre")
     private String genre;
     @JsonAlias("Year")
-    private int year;
+    private String year;
     @JsonAlias("Runtime")
-    private int duration;
+    private String duration;
     @JsonAlias("Plot")
     private String synopsis;
     @JsonAlias("Rated")
@@ -23,8 +25,8 @@ public class JsonClass {
 
     public String getTitle() {return title;}
     public String getGenre() {return genre;}
-    public int getYear() {return year;}
-    public int getDuration() {return duration;}
+    public String getYear() {return year;}
+    public String getDuration() {return duration;}
     public String getSynopsis() {return synopsis;}
     public String getRated() {return rated;}
     public String getLanguage() {return language;}
