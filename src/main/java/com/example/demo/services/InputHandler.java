@@ -25,6 +25,10 @@ public final class InputHandler {
             case 1:
                 System.out.println("Ingresa el nombre de la Pelicula que deseas buscar :");
                 userRequest=scanner.nextLine();
+                String json = apiRequest.obtenerDatos(userRequest, 1);
+                //solo busca el titulo cambiar para buscar por temporada en caso de ser serie o por keywords o director
+                Production jsonMapped = mapper.readValue(json,Production.class);
+                System.out.println(jsonMapped.toString());
                 break;
 
             case 2:
@@ -41,8 +45,5 @@ public final class InputHandler {
                 break;
         }
 
-        String json = apiRequest.obtenerDatos(userRequest);//solo busca el titulo cambiar para buscar por temporada en caso de ser serie o por keywords o director
-        Production jsonMapped = mapper.readValue(json,Production.class);
-        System.out.println(jsonMapped.toString());
     }
 }

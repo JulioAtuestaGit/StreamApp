@@ -8,7 +8,7 @@ import java.net.http.HttpResponse;
 
 public class ApiRequest {
     private static String apiUrl="http://www.omdbapi.com/?t=%s&apikey=da800df0";
-    public static String obtenerDatos(String input) {
+    public static String obtenerDatos(String input, int type) {
         String request = String.format(apiUrl,input);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(request)).build();
