@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.model.MultipleProductions;
 import com.example.demo.model.Production;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,10 +26,12 @@ public final class InputHandler {
             case 1:
                 System.out.println("Ingresa el nombre de la Pelicula que deseas buscar :");
                 userRequest=scanner.nextLine();
-                String json = apiRequest.obtenerDatos(userRequest, 1);
-                //solo busca el titulo cambiar para buscar por temporada en caso de ser serie o por keywords o director
-                Production jsonMapped = mapper.readValue(json,Production.class);
-                System.out.println(jsonMapped.toString());
+                String json = apiRequest.obtenerDatos("batman", 1);
+
+                MultipleProductions allProds = mapper.readValue(json,MultipleProductions.class);
+                System.out.println(allProds.getResponse());
+                System.out.println(allProds.getTotal());
+                System.out.println(allProds.getProductions());
                 break;
 
             case 2:

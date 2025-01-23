@@ -7,9 +7,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ApiRequest {
-    private static String apiUrl="http://www.omdbapi.com/?t=%s&apikey=da800df0";
+    private static String apiUrl="http://www.omdbapi.com/?s=%s&apikey=da800df0";
     public static String obtenerDatos(String input, int type) {
         String request = String.format(apiUrl,input);
+        System.out.println(request);  /////////////////////////URL
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(request)).build();
         HttpResponse<String> jsonResponse = null;
@@ -21,6 +22,7 @@ public class ApiRequest {
             throw new RuntimeException(e);
         }
         String json = jsonResponse.body();
+        System.out.println("API ::::::"+json);////////////////////////json response
         return json;
     }
 
