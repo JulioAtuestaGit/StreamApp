@@ -17,21 +17,19 @@ public class MultipleProductions {
     @JsonAlias("Response")
     private String response;
     @JsonAlias("Search")
-    private List<Production> productions = new ArrayList<>();
+    private List<ShortProduction> shortProductions = new ArrayList<>();
+
     public String getTotal() {return total;}
     public String getResponse() {return response;}
-    public List<Production> getProductions() {return productions;}
+    public List<ShortProduction> getShortProductions() {return shortProductions;}
 
-    public void arrai() throws JsonProcessingException {
+/*    public void arrai() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();  //mover a una funcion en otro lado
         String json = ApiRequest.obtenerDatos("batman", 1);
         MultipleProductions multipleProductions = mapper.readValue(json, MultipleProductions.class);
-        this.productions = multipleProductions.getProductions();
-    }
+        this.shortProductions = multipleProductions.getShortProductions();
+    }*/
 }
-// for(int i=0; i<Integer.parseInt(getTotal()); i++)    {
-// productions.add(mapper.readValue(json,new TypeReference<List<Production>>(){}));
-//        }
 
 
 

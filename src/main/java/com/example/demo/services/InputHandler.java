@@ -26,12 +26,12 @@ public final class InputHandler {
             case 1:
                 System.out.println("Ingresa el nombre de la Pelicula que deseas buscar :");
                 userRequest=scanner.nextLine();
-                String json = apiRequest.obtenerDatos("batman", 1);
+                String json = apiRequest.obtenerDatos("Lord+of+the+rings", 1);
 
                 MultipleProductions allProds = mapper.readValue(json,MultipleProductions.class);
                 System.out.println(allProds.getResponse());
                 System.out.println(allProds.getTotal());
-                System.out.println(allProds.getProductions());
+                System.out.println(allProds.getShortProductions());
                 break;
 
             case 2:

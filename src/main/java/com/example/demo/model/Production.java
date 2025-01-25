@@ -38,7 +38,7 @@ public class Production {
     }
     @Override
     public String toString() {
-        return "Title: "+title
+        return "\nTitle: "+title
                 +"\nSynopsis: "+synopsis
                 +"\nGenre: "+genre
                 +"\nYear: "+year
