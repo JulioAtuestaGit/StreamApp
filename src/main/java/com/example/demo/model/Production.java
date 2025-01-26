@@ -4,24 +4,29 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
 public class Production {
-    @JsonAlias("Title")//Json alias only reading // Jsonproperty also writing
-    protected String title;
+    //Json alias only reading // Jsonproperty also writing
+    @JsonAlias("Total")
+    private String total;
+    @JsonAlias("Title")
+    private String title;
     @JsonAlias("Genre")
-    protected String genre;
+    private String genre;
     @JsonAlias("Year")
-    protected String year;
+    private String year;
     @JsonAlias("Runtime")
-    protected String duration;
+    private String duration;
     @JsonAlias("Plot")
-    protected String synopsis;
+    private String synopsis;
     @JsonAlias("Rated")
-    protected String rated;
+    private String rated;
     @JsonAlias("Language")
-    protected String language;
+    private String language;
     @JsonAlias("Director")
-    protected String director;
+    private String director;
     @JsonAlias("Actors")
-    protected String actors;
+    private String actors;
+    @JsonAlias("Type")
+    private String type;
 
     public String getTitle() {return title;}
     public String getGenre() {return genre;}
@@ -32,8 +37,10 @@ public class Production {
     public String getLanguage() {return language;}
     public String getDirector() {return director;}
     public String getActors() {return actors;}
+    public String getTotal() {return total;}
+    public String getType() {return type;}
 
-    public void play(){
+        public void play(){
         System.out.println("Now playing :"+getTitle());
     }
     @Override
