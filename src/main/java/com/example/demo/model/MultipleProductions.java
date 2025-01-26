@@ -1,9 +1,4 @@
 package com.example.demo.model;
-import com.example.demo.model.Production;
-import com.example.demo.services.ApiRequest;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
@@ -24,7 +19,11 @@ public class MultipleProductions {
 
     @Override
     public String toString() {
-         return "\n"+total+"\n"+shortProductions;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i=1; i<=shortProductions.size();i++){
+            stringBuilder.append("Resultado ").append(i).append(":").append(shortProductions.get(i-1).toString()).append("\n\n");
+        }
+         return this.getResponse()+" : "+this.getTotal()+"\n\n"+stringBuilder;
     }
 }
 

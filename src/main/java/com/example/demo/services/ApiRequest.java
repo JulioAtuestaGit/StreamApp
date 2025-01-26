@@ -27,7 +27,7 @@ public class ApiRequest {
         String json = jsonResponse.body();
         return json;
     }
-    public static String obtenerDatos(String input, int page) {
+    public static String obtenerDatos(String input, int page) {//multiple pages results
         String request = String.format(apiUrl,input) + "&page=" +page;
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(request)).build();
