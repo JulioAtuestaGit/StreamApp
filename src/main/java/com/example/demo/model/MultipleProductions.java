@@ -1,5 +1,4 @@
 package com.example.demo.model;
-
 import com.example.demo.model.Production;
 import com.example.demo.services.ApiRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,13 +22,12 @@ public class MultipleProductions {
     public String getResponse() {return response;}
     public List<ShortProduction> getShortProductions() {return shortProductions;}
 
-/*    public void arrai() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();  //mover a una funcion en otro lado
-        String json = ApiRequest.obtenerDatos("batman", 1);
-        MultipleProductions multipleProductions = mapper.readValue(json, MultipleProductions.class);
-        this.shortProductions = multipleProductions.getShortProductions();
-    }*/
+    @Override
+    public String toString() {
+         return "\n"+total+"\n"+shortProductions;
+    }
 }
+
 
 
 

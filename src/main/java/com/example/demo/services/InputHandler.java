@@ -9,29 +9,19 @@ import java.util.Scanner;
 public final class InputHandler {
     private static String userRequest;
     private static int userSelection;
-    public static void inputs() throws JsonProcessingException {
+    public static void inputs(int userSelection) throws JsonProcessingException {
         Scanner scanner = new Scanner(System.in);
         ApiRequest apiRequest = new ApiRequest();
         ObjectMapper mapper = new ObjectMapper();
-        /*Entrada mover a clase*/
-        System.out.println("""
-				Selecciona search type :
-				1 - Pelicula
-				2 - Serie
-				3 - Episode
-				4 - Keywords
-				""");
-        userSelection = scanner.nextInt();
+
         switch (userSelection){
             case 1:
                 System.out.println("Ingresa el nombre de la Pelicula que deseas buscar :");
                 userRequest=scanner.nextLine();
-                String json = apiRequest.obtenerDatos("Lord+of+the+rings", 1);
+                userRequest.replace(" ","+");
+                String json = apiRequest.obtenerDatos(userRequest);
+                Production movie = mapper.readValue(json,Production.class);
 
-                MultipleProductions allProds = mapper.readValue(json,MultipleProductions.class);
-                System.out.println(allProds.getResponse());
-                System.out.println(allProds.getTotal());
-                System.out.println(allProds.getShortProductions());
                 break;
 
             case 2:
@@ -43,9 +33,25 @@ public final class InputHandler {
                 userRequest=scanner.nextLine();
                 break;
             case 4:
-                System.out.println("Ingresa pala clave que deseas buscar :");
+                System.out.println("Ingresa palabra clave que deseas buscar :");
                 userRequest=scanner.nextLine();
+                userRequest.replace(" ","+");
+                json = apiRequest.obtenerDatos(userRequest);
+                MultipleProductions allProds = mapper.readValue(json,MultipleProductions.class);
+                int initialSize =Math.ceilDiv(Integer.valueOf(allProds.getTotal()),allProds.getShortProductions().size());
+                System.out.println("NUMERO DE CICLOS SSSSSSSSS::::::::::::::: SSSSSS "+ initialSize);
+                if (allProds.getShortProductions().size()<Integer.valueOf(allProds.getTotal())){
+                    for(int i = 2; i < initialSize; i++){
+                        String newPage = apiRequest.obtenerDatos(userRequest,i);
+                        MultipleProductions newPages = mapper.readValue(newPage,MultipleProductions.class);
+                        for (int j=0; j<newPages.getShortProductions().size();j++){
+                            allProds.getShortProductions().add(newPages.getShortProductions().get(j));
+                        }
+                    }
+                    System.out.println(allProds.toString());
+                }
                 break;
+
         }
 
     }
