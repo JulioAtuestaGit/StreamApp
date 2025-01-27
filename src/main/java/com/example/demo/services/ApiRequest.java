@@ -7,13 +7,22 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ApiRequest {
-    private static String apiUrl="http://www.omdbapi.com/?s=%s&apikey=da800df0";
+    private static String apiUrl="http://www.omdbapi.com/?";
 
     //methods
-    public String getApiUrl() {return apiUrl;}
+    public static String getApiUrl() {return apiUrl;}
+    public static void setApiUrl(String input){
+        apiUrl = apiUrl + "t=%s"+"&apikey=da800df0";
+        String.format(apiUrl,input);
+    }
+    public static void setApiUrl(String input, int page){
+        apiUrl = apiUrl + "s=%s"+"&apikey=da800df0"+ "&page=" +page;
+        apiUrl= String.format(apiUrl,input);
+    }
 
     public static String obtenerDatos(String input) {
-        String request = String.format(apiUrl,input);
+        setApiUrl(input);
+        String request = getApiUrl();
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(request)).build();
         HttpResponse<String> jsonResponse = null;
@@ -27,8 +36,10 @@ public class ApiRequest {
         String json = jsonResponse.body();
         return json;
     }
+
     public static String obtenerDatos(String input, int page) {//multiple pages results
-        String request = String.format(apiUrl,input) + "&page=" +page;
+        setApiUrl(input,page);
+        String request = getApiUrl();
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(request)).build();
         HttpResponse<String> jsonResponse = null;

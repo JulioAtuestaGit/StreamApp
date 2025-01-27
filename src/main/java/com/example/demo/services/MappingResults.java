@@ -14,10 +14,9 @@ public final class MappingResults {
         static String json;
 
     public static void simpleMapping() throws JsonProcessingException {
-        System.out.println("IQue deseas ver hoy?");
+        System.out.println("Que deseas ver hoy?");
         userRequest = scanner.nextLine();
-        //userRequest.replace(" ","+");
-        json = apiRequest.obtenerDatos(userRequest); // ir al api cambiar s por t  y poner condicion  para que sea s o t
+        json = apiRequest.obtenerDatos(userRequest);
         Production movie = mapper.readValue(json, Production.class);
         if(movie.getTotal()==null || "Null".equals(movie.getTotal())){
             MultipleMapping();
