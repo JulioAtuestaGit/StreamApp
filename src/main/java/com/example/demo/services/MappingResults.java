@@ -19,14 +19,16 @@ public final class MappingResults {
         json = apiRequest.obtenerDatos(userRequest);
         Production movie = mapper.readValue(json, Production.class);
         if(movie.getTotal()==null || "Null".equals(movie.getTotal())){
+            System.out.println("llamando a multiple");
             MultipleMapping();
             } else {
-                System.out.println(movie);
+            System.out.println("resultado unico");
+                System.out.println(movie.getTitle());
             }
         }
 
     public static void MultipleMapping() throws JsonProcessingException {
-        // json = apiRequest.obtenerDatos(userRequest);
+            json = apiRequest.obtenerDatos(userRequest);
             MultipleProductions allProds = mapper.readValue(json, MultipleProductions.class);
             int initialSize = Math.ceilDiv(Integer.valueOf(allProds.getTotal()), allProds.getShortProductions().size());
 
