@@ -47,7 +47,7 @@ public class ApiRequest {
             throw new RuntimeException(e);
         }
         String json = jsonResponse.body();
-        System.out.println(json);////////////////////////////////////////
+        System.out.println(json);
         return json;
     }
 
