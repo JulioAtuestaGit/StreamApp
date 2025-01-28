@@ -20,10 +20,14 @@ public class MultipleProductions {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(":: PAGE :: 1 \n");
         for (int i=1; i<=shortProductions.size();i++){
+            if(i%10==0){
+                stringBuilder.append(":: PAGE :: "+ 1+i/10 +"\n");
+            }
             stringBuilder.append("Resultado ").append(i).append(":").append(shortProductions.get(i-1).toString()).append("\n\n");
         }
-         return this.getResponse()+" : "+this.getTotal()+"\n\n"+stringBuilder;
+        return this.getResponse()+" : "+this.getTotal()+"\n\n"+stringBuilder;
     }
 }
 
