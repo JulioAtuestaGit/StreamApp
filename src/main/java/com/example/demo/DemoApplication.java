@@ -15,18 +15,8 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		Scanner scanner = new Scanner(System.in);
-		/*Entrada mover a clase*/
-		System.out.println("""
-				Selecciona search type :
-				1 - Pelicula
-				2 - Serie
-				3 - Episode
-				4 - Keywords
-				""");
-		int userSelection = scanner.nextInt();
 		try{
-			InputHandler.inputs(userSelection);
+			InputHandler.inputs();
 		}catch (Exception e){
 			e.getMessage();
 		}
