@@ -4,7 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
 public class Production {
-    @JsonAlias("Title")//Json alias only reading // Jsonproperty also writing
+
+        //Json alias only reading // Jsonproperty also writing
+    @JsonAlias("Total")
+    protected String total;
+    @JsonAlias("Title")
     protected String title;
     @JsonAlias("Genre")
     protected String genre;
@@ -23,6 +27,7 @@ public class Production {
     @JsonAlias("Actors")
     protected String actors;
 
+    public String getTotal() {return total;}
     public String getTitle() {return title;}
     public String getGenre() {return genre;}
     public String getYear() {return year;}
@@ -38,7 +43,8 @@ public class Production {
     }
     @Override
     public String toString() {
-        return "\nTitle: "+title
+        return   "\n\n Total : "+ total
+                +"\nTitle: "+title
                 +"\nSynopsis: "+synopsis
                 +"\nGenre: "+genre
                 +"\nYear: "+year

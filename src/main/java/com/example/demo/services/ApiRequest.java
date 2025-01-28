@@ -14,6 +14,7 @@ public class ApiRequest {
 
     public static String obtenerDatos(String input) {
         String request = String.format(apiUrl,input);
+        System.out.println("URL: "+ request);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(request)).build();
         HttpResponse<String> jsonResponse = null;
@@ -27,6 +28,14 @@ public class ApiRequest {
         String json = jsonResponse.body();
         return json;
     }
+
+    /*
+    *
+    *  CAMNIAR URL usar T S type EPISODE
+    *
+    * */
+
+
     public static String obtenerDatos(String input, int page) {
         String request = String.format(apiUrl,input) + "&page=" +page;
         HttpClient client = HttpClient.newHttpClient();
@@ -42,4 +51,10 @@ public class ApiRequest {
         String json = jsonResponse.body();
         return json;
     }
+
+   public static String htppRequest(String jsonResponse){
+  /*crear metodo que cree la url T s type episode y page y llama al coso la url se envia en forma de que ? string array
+  * como identifica le metodo nuevo que tine pages  esto entra en conflicto con el single  y el multiple ?*/
+       return null;
+   }
 }
