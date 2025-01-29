@@ -11,44 +11,32 @@ public final class Mapping {
     static ApiRequest apiRequest = new ApiRequest();
     static ObjectMapper mapper = new ObjectMapper();
 
-    public static void singleMapping( ) throws JsonProcessingException {
-        System.out.println("que deseas ver:");
-        userRequest=scanner.nextLine();
-        String json = apiRequest.obtenerDatos(userRequest);
-        Production production = mapper.readValue(json,Production.class);
-        System.out.println(production);
-
+    public static  void filterProductions(){
         System.out.println("""
-                1- Play this tittle
-                2- Show more results
-                3- Search New titlle
+                Select result number:
+                
+                Filter results:
+                type:
+                movie
+                series
+                game
+                Filter by Year:
                 """);
-        /* mostrar mas resultados llama a multiple
-        * busqueda nueva recursividad
-        * ver esta pelicula llama a nowplaying*/
-        int userSelection = scanner.nextInt();
-        if(userSelection == 1 ){
-            production.play();
-        }else if (userSelection == 2){
-           //a multipleMapping(json);
-        } else {
-            singleMapping(); // al usar recursividad no pregunta de neuvo que se quiere ver
-        }
     }
 
-    public static void multipleMapping(/*String json*/) throws JsonProcessingException {
-        System.out.println("que deseas ver:");
-        userRequest=scanner.nextLine();
-        String json = apiRequest.obtenerDatos(userRequest);
+    public static void multipleMapping() throws JsonProcessingException {
+        System.out.println("Search:");
+        userRequest = scanner.nextLine();
+        userRequest = userRequest.replace(" ","+");
+        String json = apiRequest.apirequest(userRequest,1);
         System.out.println(json);
         MultipleProductions allProds = mapper.readValue(json,MultipleProductions.class);
         System.out.println(allProds);
         int pages =Math.ceilDiv(Integer.valueOf(allProds.getTotal()),allProds.getShortProductions().size());
 
                 if (allProds.getShortProductions().size() < Integer.valueOf(allProds.getTotal())) {
-                    //System.out.println("NUMERO DE CICLOS SSSSSSSSS::::::::::::::: SSSSSS " + pages);
-                    for (int i = 2; i < pages; i++) {
-                        String newPage = apiRequest.obtenerDatos(userRequest, i);
+                    for (int i = 2; i < pages+1; i++) {
+                        String newPage = apiRequest.apirequest(userRequest, i);
                         MultipleProductions newPages = mapper.readValue(newPage, MultipleProductions.class);
                         for (int j = 0; j < newPages.getShortProductions().size(); j++) {
                             allProds.getShortProductions().add(newPages.getShortProductions().get(j));
@@ -58,6 +46,7 @@ public final class Mapping {
                 }else if (allProds.getShortProductions().size() > Integer.valueOf(allProds.getTotal())){
                     System.out.println("*** No Possible ***");
                 }
+        filterProductions();
         }
     }
 
