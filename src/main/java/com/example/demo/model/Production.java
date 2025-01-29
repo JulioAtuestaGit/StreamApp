@@ -4,30 +4,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
 public class Production {
-    //Json alias only reading // Jsonproperty also writing
-    @JsonAlias("Total")
-    private String total;
-    @JsonAlias("Title")
-    private String title;
-    @JsonAlias("Genre")
-    private String genre;
-    @JsonAlias("Year")
-    private String year;
-    @JsonAlias("Runtime")
-    private String duration;
-    @JsonAlias("Plot")
-    private String synopsis;
-    @JsonAlias("Rated")
-    private String rated;
-    @JsonAlias("Language")
-    private String language;
-    @JsonAlias("Director")
-    private String director;
-    @JsonAlias("Actors")
-    private String actors;
-    @JsonAlias("Type")
-    private String type;
 
+        //Json alias only reading // Jsonproperty also writing
+    @JsonAlias("Total")
+    protected String total;
+    @JsonAlias("Title")
+    protected String title;
+    @JsonAlias("Genre")
+    protected String genre;
+    @JsonAlias("Year")
+    protected String year;
+    @JsonAlias("Runtime")
+    protected String duration;
+    @JsonAlias("Plot")
+    protected String synopsis;
+    @JsonAlias("Rated")
+    protected String rated;
+    @JsonAlias("Language")
+    protected String language;
+    @JsonAlias("Director")
+    protected String director;
+    @JsonAlias("Actors")
+    protected String actors;
+
+    public String getTotal() {return total;}
     public String getTitle() {return title;}
     public String getGenre() {return genre;}
     public String getYear() {return year;}
@@ -37,15 +37,14 @@ public class Production {
     public String getLanguage() {return language;}
     public String getDirector() {return director;}
     public String getActors() {return actors;}
-    public String getTotal() {return total;}
-    public String getType() {return type;}
 
-        public void play(){
+    public void play(){
         System.out.println("Now playing :"+getTitle());
     }
     @Override
     public String toString() {
-        return "\nTitle: "+title
+        return   "\n\n Total : "+ total
+                +"\nTitle: "+title
                 +"\nSynopsis: "+synopsis
                 +"\nGenre: "+genre
                 +"\nYear: "+year

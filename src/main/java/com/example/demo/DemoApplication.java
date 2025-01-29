@@ -1,11 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.services.InputHandler;
+import com.example.demo.services.Mapping;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Scanner;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -16,7 +14,7 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 		try{
-			InputHandler.inputs();
+			Mapping.multipleMapping();
 		}catch (Exception e){
 			e.getMessage();
 		}
