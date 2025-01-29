@@ -31,7 +31,7 @@ public class ApiRequest {
 
     /*
     *
-    *  CAMNIAR URL usar T S type EPISODE
+    *  CAMNIAR URL usar T S type EPISODE y page
     *
     * */
 
