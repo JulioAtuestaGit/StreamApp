@@ -16,6 +16,9 @@ public class ShortProduction {
     public String getYear() {return year;}
     public String getType() {return type;}
 
+    public void play(){
+        System.out.println("Now playing :"+this.getTitle());
+    }
     @Override
     public String toString() {
         return "\nTitle: "+ title

@@ -17,6 +17,9 @@ public class MultipleProductions {
     public String getResponse() {return response;}
     public List<ShortProduction> getShortProductions() {return shortProductions;}
 
+    public void setTotal(String total) {this.total = total;}
+    public void setShortProductions(List<ShortProduction> shortProductions) {this.shortProductions = shortProductions;}
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -27,7 +30,7 @@ public class MultipleProductions {
             }
             stringBuilder.append("Resultado ").append(i).append(":").append(shortProductions.get(i-1).toString()).append("\n\n");
         }
-        return this.getResponse()+" : "+this.getTotal()+"\n\n"+stringBuilder;
+        return this.getResponse()+" Results : "+this.getTotal()+"\n\n"+stringBuilder;
     }
 }
 
