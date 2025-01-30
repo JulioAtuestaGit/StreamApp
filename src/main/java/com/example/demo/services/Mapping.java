@@ -4,7 +4,6 @@ import com.example.demo.model.Production;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.util.StringMap;
-
 import javax.swing.event.ListSelectionEvent;
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +15,6 @@ public final class Mapping {
     static Scanner scanner = new Scanner(System.in);
     static ApiRequest apiRequest = new ApiRequest();
     static ObjectMapper mapper = new ObjectMapper();
-
 
     public static void multipleMapping() throws JsonProcessingException {
         System.out.println("Search:");
@@ -41,7 +39,6 @@ public final class Mapping {
                     System.out.println("*** No Possible ***");
                 }
         FilterProduction.filterProductions(allProds);
-
         }
     }
 

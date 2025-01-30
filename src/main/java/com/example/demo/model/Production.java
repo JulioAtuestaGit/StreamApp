@@ -7,25 +7,25 @@ public class Production {
 
         //Json alias only reading // Jsonproperty also writing
     @JsonAlias("Total")
-    protected String total;
+    private String total;
     @JsonAlias("Title")
-    protected String title;
+    private String title;
     @JsonAlias("Genre")
-    protected String genre;
+    private String genre;
     @JsonAlias("Year")
-    protected String year;
+    private String year;
     @JsonAlias("Runtime")
-    protected String duration;
+    private String duration;
     @JsonAlias("Plot")
-    protected String synopsis;
+    private String synopsis;
     @JsonAlias("Rated")
-    protected String rated;
+    private String rated;
     @JsonAlias("Language")
-    protected String language;
+    private String language;
     @JsonAlias("Director")
-    protected String director;
+    private String director;
     @JsonAlias("Actors")
-    protected String actors;
+    private String actors;
 
     public String getTotal() {return total;}
     public String getTitle() {return title;}
