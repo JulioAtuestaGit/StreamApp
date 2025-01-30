@@ -17,13 +17,14 @@ public final class Mapping {
     static ApiRequest apiRequest = new ApiRequest();
     static ObjectMapper mapper = new ObjectMapper();
 
-    public static  void filterProductions(MultipleProductions allprods){
+    public static  void filterProductions(MultipleProductions allprods) throws JsonProcessingException {
         int menu=0;
         int selection=0;
         System.out.println("""
                 1- Chose a Tilte:
                 2- Filter Results:
                 3- Search again:
+                4- Exit
                 """);
             menu = scanner.nextInt();
         switch (menu){
@@ -80,10 +81,32 @@ public final class Mapping {
                             Type year upper limit:
                             """);
                             finalYear = scanner.nextInt();
+                            System.out.println(initialYear);
+                            System.out.println(finalYear);
+                            System.out.println(allprods);
+                            System.out.println(filteredResults);
+                            for (int i=0; i<allprods.getShortProductions().size() ;i++){
+                                //int myYear = Integer.valueOf (allprods.getShortProductions().get(i).getYear());
+                                String myYear = allprods.getShortProductions().get(i).getYear();
+                                System.out.println("imprime"+myYear);
+                               /* if(myYear >= initialYear && myYear<= finalYear ){
+                                    filteredResults.getShortProductions().add(allprods.getShortProductions().get(i));
+                                }*/
+                            }
+                            if (filteredResults.getShortProductions().isEmpty()) {
+                                System.out.println("No productions found in the selected range.");
+                            } else {
+                                System.out.println("Filtered Results: " + filteredResults);
+                            }
+
+//                            System.out.println(filteredResults);
                             break;
                 }
             case 3:
-                /*nueva busqeuda*/
+                multipleMapping();
+                break;
+            default:
+                System.out.println("Come back soon");
                 break;
         }
     }
@@ -111,6 +134,7 @@ public final class Mapping {
                     System.out.println("*** No Possible ***");
                 }
         filterProductions(allProds);
+                
         }
     }
 
