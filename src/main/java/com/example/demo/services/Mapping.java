@@ -36,7 +36,7 @@ public final class Mapping {
                             allProds.getShortProductions().add(newPages.getShortProductions().get(j));
                         }
                     }
-                    System.out.println(allProds);
+                    System.out.println("mapping :\n\n"+allProds);
                 }else if (allProds.getShortProductions().size() > Integer.valueOf(allProds.getTotal())){
                     System.out.println("*** No Possible ***");
                 }

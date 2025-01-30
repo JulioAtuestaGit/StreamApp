@@ -1,8 +1,6 @@
 package com.example.demo.services;
-
 import com.example.demo.model.MultipleProductions;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -41,10 +39,7 @@ public class FilterProduction {
                         //change remove for filter to set series to keep the og list
                         filteredResults.setShortProductions(allprods.getShortProductions().stream().filter(
                                 production -> "series".equals(production.getType())).collect(Collectors.toList()));
-
-                            /* same reference
-                            filteredResults.getShortProductions().removeIf(shortProduction -> !"filteredResults".equals(shortProduction.getType()));
-                            */
+/* same reference  filteredResults.getShortProductions().removeIf(shortProduction -> !"filteredResults".equals(shortProduction.getType()));                            */
                         filteredResults.setTotal(String.valueOf(filteredResults.getShortProductions().size()));
                         System.out.println(filteredResults);
                         break;
@@ -61,7 +56,6 @@ public class FilterProduction {
                         System.out.println(filteredResults);
                         break;
                     case 4:
-                        /* FILTRAR POR AÑO */
                         int initialYear =0;
                         int finalYear=0;
                         System.out.println("""
@@ -74,27 +68,34 @@ public class FilterProduction {
                             Type year upper limit:
                             """);
                         finalYear = scanner.nextInt();
-                        System.out.println(initialYear);
-                        System.out.println(finalYear);
-                        System.out.println(allprods);
-                        System.out.println(filteredResults);
+
                         for (int i=0; i<allprods.getShortProductions().size() ;i++){
-                            //int myYear = Integer.valueOf (allprods.getShortProductions().get(i).getYear());
                             String myYear = allprods.getShortProductions().get(i).getYear();
-                            System.out.println("imprime"+myYear);
-                               /* if(myYear >= initialYear && myYear<= finalYear ){
+                            Integer firstProdYear;
+                            Integer secondYear;
+
+                            if (myYear.contains("–")) {
+                                String[] years = myYear.split("–");
+                                firstProdYear = Integer.valueOf(years[0].trim());
+                                secondYear = Integer.valueOf(years[1].trim());
+                                if(firstProdYear >= initialYear && secondYear<= finalYear ){
                                     filteredResults.getShortProductions().add(allprods.getShortProductions().get(i));
-                                }*/
+                                }
+                            } else {
+                                firstProdYear = Integer.valueOf(myYear);
+                                if(firstProdYear >= initialYear && firstProdYear<= finalYear ){
+                                    filteredResults.getShortProductions().add(allprods.getShortProductions().get(i));
+                                }
+                            }
                         }
                         if (filteredResults.getShortProductions().isEmpty()) {
                             System.out.println("No productions found in the selected range.");
                         } else {
                             System.out.println("Filtered Results: " + filteredResults);
                         }
-
-//                            System.out.println(filteredResults);
                         break;
                 }
+                break;
             case 3:
                 Mapping.multipleMapping();
                 break;
