@@ -1,7 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.connection.UsersDataBase;
-import com.example.demo.services.Mapping;
+import com.example.demo.connection.dataBaseConnection;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +12,7 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-			var testingConection = UsersDataBase.dbConection();
+			var testingConection = dataBaseConnection.dbConection();
 		System.out.println(testingConection);
 		try{
 			//Mapping.multipleMapping();

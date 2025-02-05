@@ -1,8 +1,8 @@
 package com.example.demo.connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
-
-public class UsersDataBase {
+/*Links the JAva project with Mysql's stream_app_users database*/
+public class dataBaseConnection {
     public static Connection dbConection(){
         Connection connection = null;
         String streamAppUsers = "stream_app_users";
