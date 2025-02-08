@@ -35,7 +35,7 @@ public class UserCrud implements ITableCrud<UserTableMap> {
             }
         }
         catch (Exception e){
-            System.out.println("error "+e.getMessage());
+            System.out.println("error retrieving the whole table"+e.getMessage());
         }finally {// se ejecuta siempre incluso si estuviera despues del return
             try {
                 connection.close();
@@ -64,7 +64,7 @@ public class UserCrud implements ITableCrud<UserTableMap> {
                 returnedObj.setUserPassword(rs.getString("user_password"));
             }
         }catch (Exception e){
-            System.out.println("Error metodo FindID en UserCrud "+e.getMessage());
+            System.out.println("Error  finding User by ID "+e.getMessage());
         }finally {
             try {
                 connection.close();
@@ -77,7 +77,24 @@ public class UserCrud implements ITableCrud<UserTableMap> {
 
     @Override
     public boolean addItem(UserTableMap item) {
-        return true;
+        PreparedStatement ppst;
+        int rowsModify;
+        Connection connection = dbConection();
+        String sqlQuery = "insert into stream_app_users.users(user_name,user_password)values('added_in_Java','java_pass','java_nickname')";
+        try{
+            ppst = connection.prepareStatement(sqlQuery);
+            rowsModify = ppst.executeUpdate();
+            return true;
+        }catch (Exception e){
+            System.out.println("Error Inserting USER in table "+e.getMessage());
+            return false;
+        }finally {
+            try {
+                connection.close();
+            }catch (Exception e){
+                System.out.println("Error closing connection" + e.getMessage());
+            }
+        }
     }
 
     @Override
@@ -87,10 +104,33 @@ public class UserCrud implements ITableCrud<UserTableMap> {
 
     @Override
     public boolean deleteItem(int id) {
-        return false;
+        PreparedStatement ppst;
+        int rowsModify;
+        Connection connection = dbConection();
+        String sqlQuery = "delete From stream_app_users.users where id=?";
+        try{
+            ppst = connection.prepareStatement(sqlQuery);
+            ppst.setInt(1,id);
+            rowsModify = ppst.executeUpdate();
+            return true;
+        }catch (Exception e){
+            System.out.println("Error Deleting USER from table "+e.getMessage());
+            return false;
+        }finally {
+            try {
+                connection.close();
+            }catch (Exception e){
+                System.out.println("Error closing connection" + e.getMessage());
+            }
+        }
     }
     public void main(){
+        UserTableMap uno = new UserTableMap("añadido","contraseña","añadidoMain");
         System.out.println(listItem());
-        System.out.println(findId(3));
+        System.out.println(findId(1));
+        System.out.println("añadido: "+addItem(uno));
+        System.out.println(findId(8));
+        System.out.println("borrado: "+deleteItem(7));
+        System.out.println(listItem());
     }
 }
