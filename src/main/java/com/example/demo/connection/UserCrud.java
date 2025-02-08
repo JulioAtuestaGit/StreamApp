@@ -1,7 +1,6 @@
 package com.example.demo.connection;
 import com.example.demo.data.ITableCrud;
 import com.example.demo.model.UserTableMap;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,7 +72,6 @@ public class UserCrud implements ITableCrud<UserTableMap> {
                 System.out.println("Error closing connection" + e.getMessage());
             }
         }
-
         return returnedObj;
     }
 
