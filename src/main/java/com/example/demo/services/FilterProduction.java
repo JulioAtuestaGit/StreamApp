@@ -97,7 +97,7 @@ public class FilterProduction {
                 }
                 break;
             case 3:
-                Mapping.multipleMapping();
+                MappingProductions.multipleMapping();
                 break;
             default:
                 System.out.println("Come back soon");

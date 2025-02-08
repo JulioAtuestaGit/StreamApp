@@ -1,13 +1,12 @@
-package com.example.demo.connection;
-import com.example.demo.data.ITableCrud;
+package com.example.demo.data;
 import com.example.demo.model.UserTableMap;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.demo.connection.dataBaseConnection.dbConection;
+import static com.example.demo.connection.DataBaseConnection.dbConection;
 
 /*this runs the CRUD tasks - representen in the interface ItableCrud- for objects type user - mapping the users table -
 * thus we have a calss user to mapp the table, an interface to declare CRUD methods and a class to define those methods
@@ -122,7 +121,6 @@ public class UserCrud implements ITableCrud<UserTableMap> {
                 System.out.println("Error closing connection" + e.getMessage());
             }
         }
-        //return false;
     }
 
     @Override

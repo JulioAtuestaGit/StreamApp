@@ -2,7 +2,7 @@ package com.example.demo.connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 /*Links the JAva project with Mysql's stream_app_users database*/
-public class dataBaseConnection {
+public class DataBaseConnection {
     public static Connection dbConection(){
         Connection connection = null;
         String streamAppUsers = "stream_app_users";
@@ -13,10 +13,10 @@ public class dataBaseConnection {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url,user,userPassword);
+            System.out.println("**** *DB CONNECTED* ****");
         }catch (Exception e){
             System.out.println("error conectando con la db "+e.getMessage());
         }
         return connection;
     }
 }
-
