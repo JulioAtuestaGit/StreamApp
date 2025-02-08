@@ -25,6 +25,7 @@ public class UserTableMap {
     }
 
     public UserTableMap(String userName, String userPassword, String userNickname) {
+        this.id = 2;
         this.userName = userName;
         this.userPassword = userPassword;
         this.userNickname = userNickname;

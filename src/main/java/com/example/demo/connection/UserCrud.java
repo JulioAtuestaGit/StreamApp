@@ -103,13 +103,17 @@ public class UserCrud implements ITableCrud<UserTableMap> {
     public boolean modifyItem(UserTableMap item) {
         PreparedStatement ppst;
         Connection connection = dbConection();
-        String sqlQuery = "insert into stream_app_users.users(user_name,user_password)values('added_in_Java','java_pass','java_nickname')";
+        String sqlQuery = "UPDATE stream_app_users.users set user_name = ?, user_password = ?, user_nickname = ? WHERE (id =?); ";
         try{
             ppst = connection.prepareStatement(sqlQuery);
+            ppst.setString(1, item.getUserName());
+            ppst.setString(2, item.getUserPassword());
+            ppst.setString(3, item.getUserNickname());
+            ppst.setInt(4,item.getId());
             ppst.executeUpdate();
             return true;
         }catch (Exception e){
-            System.out.println("Error Inserting USER in table "+e.getMessage());
+            System.out.println("Error Modifyng  USER in table "+e.getMessage());
             return false;
         }finally {
             try {
@@ -143,13 +147,17 @@ public class UserCrud implements ITableCrud<UserTableMap> {
         }
     }
     public void main(){
-        UserTableMap uno = new UserTableMap("añadido","contraseña","añadidoMain");
+        UserTableMap addedUser = new UserTableMap("añadido","contraseña","añadidoMain");
+        UserTableMap modifiedUser= new UserTableMap("modify","modify_pass","modifyMain");
+
         System.out.println(listItem());
         System.out.println(findId(1));
-        System.out.println("añadido: "+addItem(uno));
-        System.out.println(findId(8));
-        System.out.println("borrado: "+deleteItem(8));
+        System.out.println("añadido: "+addItem(addedUser));
+        System.out.println(findId(10));
+        System.out.println("borrado: "+deleteItem(11));
         System.out.println(listItem());
-       // System.out.println(modifyItem(uno));
+        modifiedUser.setId(3);
+        System.out.println(modifiedUser);
+        System.out.println(modifyItem(modifiedUser));
     }
 }
