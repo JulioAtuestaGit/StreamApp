@@ -24,7 +24,7 @@ public class UserCrud implements ITableCrud<UserTableMap> {
         String sqlQuery = "select * from users order by id";
         try{
             ppst = connection.prepareStatement(sqlQuery);
-            rs = ppst.executeQuery();
+            rs = ppst.executeQuery(); // executeQuery for Select statements // executeUpdate for insert update delete
             while (rs.next()){
                 UserTableMap user = new UserTableMap();
                 user.setId(rs.getInt("id"));
@@ -78,12 +78,14 @@ public class UserCrud implements ITableCrud<UserTableMap> {
     @Override
     public boolean addItem(UserTableMap item) {
         PreparedStatement ppst;
-        int rowsModify;
         Connection connection = dbConection();
-        String sqlQuery = "insert into stream_app_users.users(user_name,user_password)values('added_in_Java','java_pass','java_nickname')";
+        String sqlQuery = "insert into stream_app_users.users(user_name,user_password,user_nickname)values(?,?,?)";
         try{
             ppst = connection.prepareStatement(sqlQuery);
-            rowsModify = ppst.executeUpdate();
+            ppst.setString(1, item.getUserName());
+            ppst.setString(2, item.getUserPassword());
+            ppst.setString(3, item.getUserNickname());
+            ppst.executeUpdate();
             return true;
         }catch (Exception e){
             System.out.println("Error Inserting USER in table "+e.getMessage());
@@ -99,19 +101,35 @@ public class UserCrud implements ITableCrud<UserTableMap> {
 
     @Override
     public boolean modifyItem(UserTableMap item) {
-        return false;
+        PreparedStatement ppst;
+        Connection connection = dbConection();
+        String sqlQuery = "insert into stream_app_users.users(user_name,user_password)values('added_in_Java','java_pass','java_nickname')";
+        try{
+            ppst = connection.prepareStatement(sqlQuery);
+            ppst.executeUpdate();
+            return true;
+        }catch (Exception e){
+            System.out.println("Error Inserting USER in table "+e.getMessage());
+            return false;
+        }finally {
+            try {
+                connection.close();
+            }catch (Exception e){
+                System.out.println("Error closing connection" + e.getMessage());
+            }
+        }
+        //return false;
     }
 
     @Override
     public boolean deleteItem(int id) {
         PreparedStatement ppst;
-        int rowsModify;
         Connection connection = dbConection();
         String sqlQuery = "delete From stream_app_users.users where id=?";
         try{
             ppst = connection.prepareStatement(sqlQuery);
             ppst.setInt(1,id);
-            rowsModify = ppst.executeUpdate();
+            ppst.executeUpdate();
             return true;
         }catch (Exception e){
             System.out.println("Error Deleting USER from table "+e.getMessage());
@@ -130,7 +148,8 @@ public class UserCrud implements ITableCrud<UserTableMap> {
         System.out.println(findId(1));
         System.out.println("añadido: "+addItem(uno));
         System.out.println(findId(8));
-        System.out.println("borrado: "+deleteItem(7));
+        System.out.println("borrado: "+deleteItem(8));
         System.out.println(listItem());
+       // System.out.println(modifyItem(uno));
     }
 }
