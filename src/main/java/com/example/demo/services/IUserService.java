@@ -10,4 +10,5 @@ public interface  IUserService {
     public Users getUserById(Integer id); //received an empty user mapped an existing user in the table
     public void savedUser(Users user);
     public void deleteUSer(Users user);
+    public boolean findByUserEmail(String userEmail);
 }
