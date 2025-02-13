@@ -1,10 +1,9 @@
 package com.example.demo.Repository;
 import com.example.demo.model.Users;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CrudRepository extends JpaRepository <Users,Integer>{
-    SecurityProperties.User findByUserEmail(String userEmail); //JPA do not return booleans just objects
+   Users findByUserEmail(String userEmail); //JPA do not return booleans just objects // expected query generated SELECT * FROM users WHERE user_email = ?;
 
 }
 /*the main purpose of this interface is to access the data base
