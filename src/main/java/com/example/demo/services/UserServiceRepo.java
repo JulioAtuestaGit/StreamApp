@@ -32,7 +32,12 @@ public class UserServiceRepo implements IUserService{
     }
 
     @Override
-    public boolean isUserEmailRegistered(String userEmail) {
-        return crudRepository.findByUserEmail(userEmail)!=null; //true if exists false if no
+    public Users findByUserEmail(String userEmail) {
+        return crudRepository.findByUserEmail(userEmail);
+    }
+
+    @Override
+    public Users findByUserNickname(String userNickname) {
+        return crudRepository.findByUserNickname(userNickname);
     }
 }
