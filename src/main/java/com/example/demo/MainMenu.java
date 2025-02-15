@@ -1,8 +1,8 @@
 package com.example.demo;
 
-import com.example.demo.model.Users;
 import com.example.demo.services.IUserService;
 import com.example.demo.services.MappingProductions;
+import com.example.demo.services.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,9 +14,8 @@ public class MainMenu implements CommandLineRunner {
 	@Autowired
 	private IUserService iUserService;
 	Scanner scanner = new Scanner(System.in);
-	String inputEmail;
-	String inputPassword;
-	String inputNickname;
+	@Autowired
+	UserSession session;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MainMenu.class, args);
@@ -36,14 +35,12 @@ public class MainMenu implements CommandLineRunner {
 			scanner.nextLine();
 			switch (mainMenu) {
 				case 1:
-					if (logIn()) {
+					if (session.logIn()) {
 						MappingProductions.multipleMapping();
-					} else {
-						System.out.println("wrong User email or password");
 					}
 					break;
 				case 2:
-					signUp();
+					session.signUp();
 					break;
 				case 3:
 					MappingProductions.multipleMapping();
@@ -54,41 +51,4 @@ public class MainMenu implements CommandLineRunner {
 		}
 	}
 
-	private void signUp() {
-		System.out.println("""
-				***Sign Up***
-				Enter your Email:
-				""");
-		inputEmail = scanner.nextLine();
-		Users newUser=new Users();
-		if(iUserService.findByUserEmail(inputEmail) != null){
-			System.out.println("There is a registered account with that email");
-		}else {
-			System.out.println("create Password : ");
-			inputPassword = scanner.nextLine();
-			System.out.println("create user nickname :");
-			inputNickname = scanner.nextLine();
-
-			newUser.setUserEmail(inputEmail);
-			newUser.setUserPassword(inputPassword);
-			newUser.setUserNickname(inputNickname);
-
-			iUserService.savedUser(newUser);
-		}
-	}
-
-	private boolean logIn() {
-		System.out.println("""
-				***Log in***
-				User's Email:
-				""");
-		inputEmail = scanner.nextLine();
-		System.out.println("User's Password: ");
-		inputPassword = scanner.nextLine();
-		Users user = iUserService.findByUserEmail(inputEmail);
-		if(user!=null ){
-			System.out.println("Welcome "+ user.getUserNickname());
-			return true;
-		}else{return false;}
-	}
 }
