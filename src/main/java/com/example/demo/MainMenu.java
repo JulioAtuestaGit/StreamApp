@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Map;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -41,6 +43,7 @@ public class MainMenu implements CommandLineRunner {
 					break;
 				case 2:
 					session.signUp();
+					MappingProductions.multipleMapping();
 					break;
 				case 3:
 					MappingProductions.multipleMapping();

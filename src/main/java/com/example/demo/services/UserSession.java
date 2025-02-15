@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-
 public  class UserSession {
     @Autowired
      IUserService iUserService;
@@ -16,36 +15,50 @@ public  class UserSession {
      Users user;
 
     public  void signUp() {
+        Users newUser = new Users();
         while (true) {
-            System.out.println("""
-                    ***Sign Up***
-                    Enter your Email:
-                    """);
-            inputEmail = scanner.nextLine();
-            Users newUser = new Users();
+            System.out.println("***Sign Up***");
+            inputEmail = askforEmail();
             if (iUserService.findByUserEmail(inputEmail) != null) {
-                System.out.println("There is a registered account with that email");
-            } else {
-                System.out.println("create Password : ");
-                inputPassword = scanner.nextLine();
-                System.out.println("create user nickname :");
-                inputNickname = scanner.nextLine();
+                System.out.println("""
+                    There is a registered account with that email
+                    would you like to Log In?
+                    1- Log In
+                    2 -Sign up
+                    """);
+                if(scanner.nextInt()==1){
+                    logIn(inputEmail);
+                    break;
+                }
 
+            } else {
+                System.out.println("Create user nickname :");
+                inputNickname = scanner.nextLine();
+                while (true){
+                    System.out.println("Create Password : ");
+                    inputPassword = scanner.nextLine();
+                    System.out.println("Confirm Password : ");
+                    if(inputPassword.equals(scanner.nextLine())){
+                        break;
+                    }
+                    System.out.println("Password don't match. Try Again :");
+                }
                 newUser.setUserEmail(inputEmail);
                 newUser.setUserPassword(inputPassword);
                 newUser.setUserNickname(inputNickname);
-
                 iUserService.savedUser(newUser);
+                break;
             }
         }
     }
 
     public  boolean logIn() {
-        System.out.println("""
-                ***Log in***
-                User's Email:
-                """);
-        inputEmail = scanner.nextLine();
+        inputEmail = askforEmail();
+        return logIn(inputEmail);
+    }
+
+    public  boolean logIn(String inputEmail) {
+        System.out.println("***Log in***");
         System.out.println("User's Password: ");
         inputPassword = scanner.nextLine();
         while (true){
@@ -56,7 +69,7 @@ public  class UserSession {
                     System.out.println("Welcome " + user.getUserNickname());
                     return true;
                 } else {
-                    System.out.println("Inconrrect password");
+                    System.out.println("Incorrect password");
                     System.out.println("User's Password: ");
                     inputPassword = scanner.nextLine();
                 }
@@ -69,8 +82,7 @@ public  class UserSession {
                 int userInput = scanner.nextInt();
                 scanner.nextLine();
                 if(userInput == 1){
-                    System.out.println("User's Email: ");
-                    inputEmail = scanner.nextLine();
+                    inputEmail = askforEmail();
                     System.out.println("User's Password: ");
                     inputPassword = scanner.nextLine();
                 }else {
@@ -79,5 +91,16 @@ public  class UserSession {
             }
         }
         return false;
+    }
+
+    public String askforEmail(){
+        while (true){
+            System.out.println("Enter Email");
+            inputEmail =scanner.nextLine();
+            if(inputEmail.contains("@") && !inputEmail.contains(".")){
+                return inputEmail;
+            }
+                System.out.println("Invalid Email format");
+        }
     }
 }
