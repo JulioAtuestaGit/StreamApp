@@ -16,25 +16,27 @@ public  class UserSession {
      Users user;
 
     public  void signUp() {
-        System.out.println("""
-                ***Sign Up***
-                Enter your Email:
-                """);
-        inputEmail = scanner.nextLine();
-        Users newUser = new Users();
-        if (iUserService.findByUserEmail(inputEmail) != null) {
-            System.out.println("There is a registered account with that email");
-        } else {
-            System.out.println("create Password : ");
-            inputPassword = scanner.nextLine();
-            System.out.println("create user nickname :");
-            inputNickname = scanner.nextLine();
+        while (true) {
+            System.out.println("""
+                    ***Sign Up***
+                    Enter your Email:
+                    """);
+            inputEmail = scanner.nextLine();
+            Users newUser = new Users();
+            if (iUserService.findByUserEmail(inputEmail) != null) {
+                System.out.println("There is a registered account with that email");
+            } else {
+                System.out.println("create Password : ");
+                inputPassword = scanner.nextLine();
+                System.out.println("create user nickname :");
+                inputNickname = scanner.nextLine();
 
-            newUser.setUserEmail(inputEmail);
-            newUser.setUserPassword(inputPassword);
-            newUser.setUserNickname(inputNickname);
+                newUser.setUserEmail(inputEmail);
+                newUser.setUserPassword(inputPassword);
+                newUser.setUserNickname(inputNickname);
 
-            iUserService.savedUser(newUser);
+                iUserService.savedUser(newUser);
+            }
         }
     }
 
