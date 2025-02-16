@@ -40,8 +40,9 @@ public class MainMenu implements CommandLineRunner {
 					}
 					break;
 				case 2:
-					session.signUp();
-					MappingProductions.multipleMapping();
+					if (session.signUp()) {
+						MappingProductions.multipleMapping();
+					}
 					break;
 				case 3:
 					MappingProductions.multipleMapping();

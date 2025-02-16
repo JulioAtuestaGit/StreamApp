@@ -11,7 +11,7 @@ public  class UserSession {
      Scanner scanner = new Scanner(System.in);
      Users user;
 
-    public  void signUp() {
+    public  boolean signUp() {
         Users newUser = new Users();
         String signUpEmail;
         String signUpPassword;
@@ -27,11 +27,11 @@ public  class UserSession {
                     2 -Sign up
                     """);
                 if(scanner.nextLine().equals("1")){
-                    logIn(signUpEmail);
-                    break;
+                    return logIn(signUpEmail);
                 }
 
-            } else {
+            }else {
+
                 System.out.println("Create user nickname :");
                 signUpNickname = scanner.nextLine();
                 signUpPassword = createPassword();
@@ -44,6 +44,7 @@ public  class UserSession {
                 break;
             }
         }
+        return true;
     }
 
 
@@ -104,7 +105,6 @@ public  class UserSession {
         while (true){
             System.out.println("Create Password : ");
             newPassword = scanner.nextLine();
-            scanner.nextLine();
             if (newPassword.length() < 8 ||
                     !newPassword.matches("^(?=.*[0-9])(?=.*[!@#$%^&*()_+={};':|,.<>/?])(?=.*[a-zA-Z]).{8,}$")) {
                 System.out.println("""
