@@ -40,7 +40,7 @@ public  class UserSession {
                 newUser.setUserPassword(signUpPassword);
                 newUser.setUserNickname(signUpNickname);
 
-                iUserService.savedUser(newUser);
+                iUserService.saveData(newUser);
                 break;
             }
         }

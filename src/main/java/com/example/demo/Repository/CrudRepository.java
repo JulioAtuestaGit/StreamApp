@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CrudRepository<T,Integer> extends JpaRepository <T,Integer>{
+public interface CrudRepository extends JpaRepository <Users,Integer>{
    Users findByUserEmail(String userEmail);
    Users findByUserNickname(String userNickname);
    //JPA do not return booleans just objects // expected query generated SELECT * FROM users WHERE user_email = ?;
