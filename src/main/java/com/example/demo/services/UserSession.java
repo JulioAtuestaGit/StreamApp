@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public  class UserSession {
     @Autowired
-     IUserService iUserService;
+    IDataService iUserService;
      Scanner scanner = new Scanner(System.in);
      Users user;
 
