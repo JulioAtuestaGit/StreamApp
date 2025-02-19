@@ -17,17 +17,17 @@ public class UserServiceRepo implements IDataService {
     }
 
     @Override
-    public Users getUserById(Integer id) {
+    public Users getRowById(Integer id) {
         return crudRepository.findById(id).orElse(null);// find by id returns an optional value
     }
 
     @Override
-    public void savedUser(Users user) {
+    public void saveData(Users user) {
         crudRepository.save(user);
     }
 
     @Override
-    public void deleteUSer(Users user) {
+    public void deleteData(Users user) {
         crudRepository.delete(user);
     }
 
