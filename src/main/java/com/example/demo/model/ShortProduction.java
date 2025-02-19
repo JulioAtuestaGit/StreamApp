@@ -1,15 +1,28 @@
 package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.exc.IgnoredPropertyException;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "short_production")
 public class ShortProduction {
         @JsonAlias("Title")
+        @Column(name = "production_title")
         private String title;
         @JsonAlias("Year")
+        @Column(name = "production_year")
         private String year;
         @JsonAlias("Type")
+        @Column(name = "production_type")
         private String type;
 
     public String getTitle() {return title;}

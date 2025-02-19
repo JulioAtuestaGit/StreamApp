@@ -20,9 +20,7 @@ public class FilterProduction {
         menu = scanner.nextInt();
         switch (menu){
             case 1:
-                System.out.println("Type title number :\n");
-                selection = scanner.nextInt();
-                allprods.getShortProductions().get(selection-1).play();
+                chooseTitle(allprods);
                 break;
             case 2:
                 System.out.println("""
@@ -42,18 +40,21 @@ public class FilterProduction {
 /* same reference  filteredResults.getShortProductions().removeIf(shortProduction -> !"filteredResults".equals(shortProduction.getType()));                            */
                         filteredResults.setTotal(String.valueOf(filteredResults.getShortProductions().size()));
                         System.out.println(filteredResults);
+                        chooseTitle(filteredResults);
                         break;
                     case 2:
                         filteredResults.setShortProductions(allprods.getShortProductions().stream().filter(
                                 production -> "movie".equals(production.getType())).collect(Collectors.toList()));
                         filteredResults.setTotal(String.valueOf(filteredResults.getShortProductions().size()));
                         System.out.println(filteredResults);
+                        chooseTitle(filteredResults);
                         break;
                     case 3:
                         filteredResults.setShortProductions(allprods.getShortProductions().stream().filter(
                                 production -> "game".equals(production.getType())).collect(Collectors.toList()));
                         filteredResults.setTotal(String.valueOf(filteredResults.getShortProductions().size()));
                         System.out.println(filteredResults);
+                        chooseTitle(filteredResults);
                         break;
                     case 4:
                         int initialYear =0;
@@ -92,6 +93,7 @@ public class FilterProduction {
                             System.out.println("No productions found in the selected range.");
                         } else {
                             System.out.println("Filtered Results: " + filteredResults);
+                            chooseTitle(filteredResults);
                         }
                         break;
                 }
@@ -103,5 +105,11 @@ public class FilterProduction {
                 System.out.println("Come back soon");
                 break;
         }
+    }
+
+    public static void chooseTitle(MultipleProductions allprods){
+        System.out.println("Type title number :\n");
+        int selection = scanner.nextInt();
+        allprods.getShortProductions().get(selection-1).play();
     }
 }
