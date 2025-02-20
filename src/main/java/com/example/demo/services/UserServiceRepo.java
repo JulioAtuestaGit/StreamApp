@@ -1,18 +1,19 @@
 package com.example.demo.services;
 import com.example.demo.Repository.CrudRepository;
+import com.example.demo.Repository.ICrudUserRepo;
 import com.example.demo.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-/*Why do I need this class if we are only calling crud repository methods with no other logic*/
+/*Why do I need this class if we are only calling crud repository methods with no other logic/ it will it is possible to add extra logic to this  one but not to repo interfaces*/
 @Service
-public class UserServiceRepo implements IDataService {
+public class UserServiceRepo implements IUserService{
 
     @Autowired
-    private CrudRepository crudRepository; // Spring create an 'instance' of the type sent to the  interfaces
+    private ICrudUserRepo crudRepository; // Spring create an 'instance' of the type sent to the  interfaces
 
     @Override
-    public List<Users> usersList() {
+    public List<Users> dataList() {
         return crudRepository.findAll();
     }
 
@@ -22,13 +23,13 @@ public class UserServiceRepo implements IDataService {
     }
 
     @Override
-    public void saveData(Users user) {
-        crudRepository.save(user);
+    public void saveData(Users data) {
+        crudRepository.save(data);
     }
 
     @Override
-    public void deleteData(Users user) {
-        crudRepository.delete(user);
+    public void deleteData(Users data) {
+        crudRepository.delete(data);
     }
 
     @Override
@@ -37,7 +38,8 @@ public class UserServiceRepo implements IDataService {
     }
 
     @Override
-    public Users findByUserNickname(String userNickname) {
+    public Users findByUserNickname(String userNickname)
+    {
         return crudRepository.findByUserNickname(userNickname);
     }
 }

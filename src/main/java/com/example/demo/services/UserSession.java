@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+//component when I need spring dependencies to use my class
+//spring will detect and manage this instead of being static as injection does not work with that
+// / this converts this class into a spring dependency thus to inport this in a diff class must use @autowire
 public  class UserSession {
     @Autowired
-    IDataService iUserService;
+    IUserService iUserService;
      Scanner scanner = new Scanner(System.in);
      Users user;
 
