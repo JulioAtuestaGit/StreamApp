@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 // / this converts this class into a spring dependency thus to inport this in a diff class must use @autowire
 public  class UserSession {
     @Autowired
-    IDataService iUserService;
+    IUserService iUserService;
      Scanner scanner = new Scanner(System.in);
      Users user;
 

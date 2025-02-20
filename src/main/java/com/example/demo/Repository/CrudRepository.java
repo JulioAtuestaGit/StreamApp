@@ -1,14 +1,16 @@
 package com.example.demo.Repository;
-import com.example.demo.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.NoRepositoryBean;
 
-@Repository
-public interface CrudRepository extends JpaRepository <Users,Integer>{
-   Users findByUserEmail(String userEmail);
-   Users findByUserNickname(String userNickname);
-   //JPA do not return booleans just objects // expected query generated SELECT * FROM users WHERE user_email = ?;
+@NoRepositoryBean
+public interface CrudRepository <T,ID>extends JpaRepository <T,ID>{
+
 }
+
+/*   Users findByUserEmail(String userEmail);
+   Users findByUserNickname(String userNickname);*/
+   //JPA do not return booleans just objects // expected query generated SELECT * FROM users WHERE user_email = ?;
+
 /*the main purpose of this interface is to access the data base
 * thus it must remain as generic as possible.
 * so this can be injected in the service class that implements JPA methods
