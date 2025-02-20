@@ -8,6 +8,12 @@ import java.net.http.HttpResponse;
 public class ApiRequest {
     private static String apiUrl="http://www.omdbapi.com/?s=%s&apikey=da800df0";
 
+/*
+        Definir metodo para URL S y url
+        especifica T + opciones de typo y año
+
+     */
+
     public static String apirequest(String input, int page){
         String request = String.format(apiUrl,input) + "&page=" +page;
         System.out.println("URL: "+ request);

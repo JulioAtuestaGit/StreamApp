@@ -114,7 +114,17 @@ public class FilterProduction {
 
         /*
         *
+        * cambiar clase a non static y añadir injections para guardar productions a las tablas
         *
+        *  Para cada resultado
+        * opcion para añadir a favoritos o ver
+        *
+        * eligiendo cualquiera de las dos opciones:
+        * Añadir la Shorty a la tabla
+        * Consultar la Api con La url especifica
+        * Añadir production completa a la tabla con la llave de la shorty
+        *
+        *  Añadir id de ususario y de shorty a la tabla de historial o a la de favoritos
         *
         * */
 

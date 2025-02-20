@@ -37,6 +37,10 @@ public class MainMenu implements CommandLineRunner {
 			switch (mainMenu) {
 				case 1:
 					if (session.logIn()) {
+						/*
+						* Opcion para ver favoritos
+						* opcion para continuar viendo
+						* */
 						MappingProductions.multipleMapping();
 					}
 					break;
@@ -56,3 +60,12 @@ public class MainMenu implements CommandLineRunner {
 	}
 
 }
+/*
+* 				Modificar Filter
+* 				Modificar Main menu
+* 				Modificar API
+*
+*
+*
+*
+* */
