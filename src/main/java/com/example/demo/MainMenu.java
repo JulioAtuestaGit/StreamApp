@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.services.IDataService;
+import com.example.demo.services.IUserService;
 import com.example.demo.services.MappingProductions;
 import com.example.demo.services.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 @SpringBootApplication
 public class MainMenu implements CommandLineRunner {
 	@Autowired
-	private IDataService iUserService;
+	private IUserService iUserService;
 	Scanner scanner = new Scanner(System.in);
 	@Autowired
 	UserSession session;

@@ -1,9 +1,13 @@
 package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
-public class Production {
+@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Production extends ShortProduction{
 
         //Json alias only reading // Jsonproperty also writing
     @JsonAlias("Total")

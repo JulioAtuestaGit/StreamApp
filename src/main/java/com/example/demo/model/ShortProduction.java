@@ -11,8 +11,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
+/* classes extending from this. cannot be created directly in the DB their linked to the main class' id
+ * short production' id is used as a foreign key in production' id thus short production must exist first
+ * and a row in production table is created manually in java after a short production row is added
+ * */
 @Table(name = "short_production")
-public class ShortProduction {
+public class ShortProduction{
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)//autoincremental
         private Integer id;
@@ -25,6 +30,7 @@ public class ShortProduction {
         @JsonAlias("Type")
         @Column(name = "production_type")
         private String type;
+
 
     public String getTitle() {return title;}
     public String getYear() {return year;}

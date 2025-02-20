@@ -111,5 +111,12 @@ public class FilterProduction {
         System.out.println("Type title number :\n");
         int selection = scanner.nextInt();
         allprods.getShortProductions().get(selection-1).play();
+
+        /*
+        *
+        *
+        *
+        * */
+
     }
 }

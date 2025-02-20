@@ -1,18 +1,31 @@
 package com.example.demo.services;
 
-import com.example.demo.Repository.CrudRepository;
-import com.example.demo.Repository.ICrudPtoductionRepo;
-import com.example.demo.Repository.ICrudUserRepo;
+import com.example.demo.Repository.ICrudProductionRepo;
 import com.example.demo.model.ShortProduction;
-import com.example.demo.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-public class ProductionServiceRepo  implements IDataService<ShortProduction>{
+@Service
+public class ProductionServiceRepo  implements IProductionService<ShortProduction> {
 
     @Autowired
-    private ICrudPtoductionRepo crudRepository;
+    private ICrudProductionRepo<ShortProduction> crudRepository;
+
+    @Override
+    public ShortProduction getShortProductionByTitle(String title) {
+        return crudRepository.getShortProductionByTitle(title);
+    }
+
+    @Override
+    public ShortProduction getShortProductionByType(String type) {
+        return crudRepository.getShortProductionByType(type);
+    }
+
+    @Override
+    public ShortProduction getShortProductionByYear(String year) {
+        return crudRepository.getShortProductionByYear(year);
+    }
 
     @Override
     public List<ShortProduction> dataList() {
@@ -26,11 +39,11 @@ public class ProductionServiceRepo  implements IDataService<ShortProduction>{
 
     @Override
     public void saveData(ShortProduction data) {
-
+        crudRepository.save(data);
     }
 
     @Override
     public void deleteData(ShortProduction data) {
-
+        crudRepository.delete(data);
     }
 }

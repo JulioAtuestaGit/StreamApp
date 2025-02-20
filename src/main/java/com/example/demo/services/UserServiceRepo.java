@@ -5,7 +5,7 @@ import com.example.demo.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-/*Why do I need this class if we are only calling crud repository methods with no other logic*/
+/*Why do I need this class if we are only calling crud repository methods with no other logic/ it will it is possible to add extra logic to this  one but not to repo interfaces*/
 @Service
 public class UserServiceRepo implements IUserService{
 
