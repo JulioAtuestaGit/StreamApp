@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 /*Why do I need this class if we are only calling crud repository methods with no other logic*/
 @Service
-public class UserServiceRepo implements IDataService {
+public class UserServiceRepo implements IDataService <Users>{
 
     @Autowired
     private CrudRepository crudRepository; // Spring create an 'instance' of the type sent to the  interfaces
 
     @Override
-    public List<Users> usersList() {
+    public List<Users> dataList() {
         return crudRepository.findAll();
     }
 
@@ -22,13 +22,13 @@ public class UserServiceRepo implements IDataService {
     }
 
     @Override
-    public void saveData(Users user) {
-        crudRepository.save(user);
+    public void saveData(Users data) {
+        crudRepository.save(data);
     }
 
     @Override
-    public void deleteData(Users user) {
-        crudRepository.delete(user);
+    public void deleteData(Users data) {
+        crudRepository.delete(data);
     }
 
     @Override

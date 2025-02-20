@@ -1,9 +1,7 @@
 package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "short_production")
 public class ShortProduction {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)//autoincremental
+        private Integer id;
         @JsonAlias("Title")
         @Column(name = "production_title")
         private String title;
