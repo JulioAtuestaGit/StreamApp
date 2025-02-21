@@ -1,9 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.services.IDataService;
-import com.example.demo.services.IUserService;
-import com.example.demo.services.MappingProductions;
-import com.example.demo.services.UserSession;
+import com.example.demo.model.MultipleProductions;
+import com.example.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,9 +12,13 @@ import java.util.Scanner;
 public class MainMenu implements CommandLineRunner {
 	@Autowired
 	private IUserService iUserService;
-	Scanner scanner = new Scanner(System.in);
 	@Autowired
 	UserSession session;
+
+	Scanner scanner = new Scanner(System.in);
+	MultipleProductions returnedProds;
+	FilterProduction filterProduction = new FilterProduction();
+	Integer userId;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MainMenu.class, args);
@@ -36,12 +38,27 @@ public class MainMenu implements CommandLineRunner {
 			scanner.nextLine();
 			switch (mainMenu) {
 				case 1:
-					if (session.logIn()) {
-						/*
-						* Opcion para ver favoritos
-						* opcion para continuar viendo
-						* */
-						MappingProductions.multipleMapping();
+					userId = session.logIn();
+					if (userId != null) {
+						System.out.println("""
+							Please Select an Option
+ 							1 - Search a Title
+ 							2 - Resume Watching
+ 							3 - View Favs
+							""");
+						switch (scanner.nextInt()){
+							case 1:
+								returnedProds = MappingProductions.multipleMapping();
+								if(returnedProds.getTotal().equals("0")){break;}
+								returnedProds = filterProduction.filterProductions(returnedProds);
+								if(returnedProds.getTotal().equals("0")){break;}
+								filterProduction.chooseTitle(returnedProds,userId);
+								break;
+							case 2:
+								/* metodo ver favoritos*/
+							case 3:
+								/*metodo ver historial*/
+						}
 					}
 					break;
 				case 2:
@@ -65,7 +82,7 @@ public class MainMenu implements CommandLineRunner {
 * 				Modificar Main menu
 * 				Modificar API
 *
-*
+*				arreglar filtro de año
 *
 *
 * */

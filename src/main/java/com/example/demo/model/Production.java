@@ -2,8 +2,7 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -8,7 +8,7 @@ public class FilterProduction {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static  void filterProductions(MultipleProductions allprods) throws JsonProcessingException {
+    public MultipleProductions filterProductions(MultipleProductions allprods) throws JsonProcessingException {
         int menu=0;
         int selection=0;
         System.out.println("""
@@ -20,8 +20,7 @@ public class FilterProduction {
         menu = scanner.nextInt();
         switch (menu){
             case 1:
-                chooseTitle(allprods);
-                break;
+                return allprods;
             case 2:
                 System.out.println("""
                         1- Filter Series
@@ -40,22 +39,22 @@ public class FilterProduction {
 /* same reference  filteredResults.getShortProductions().removeIf(shortProduction -> !"filteredResults".equals(shortProduction.getType()));                            */
                         filteredResults.setTotal(String.valueOf(filteredResults.getShortProductions().size()));
                         System.out.println(filteredResults);
-                        chooseTitle(filteredResults);
-                        break;
+                        return(filteredResults);
+
                     case 2:
                         filteredResults.setShortProductions(allprods.getShortProductions().stream().filter(
                                 production -> "movie".equals(production.getType())).collect(Collectors.toList()));
                         filteredResults.setTotal(String.valueOf(filteredResults.getShortProductions().size()));
                         System.out.println(filteredResults);
-                        chooseTitle(filteredResults);
-                        break;
+                        return(filteredResults);
+
                     case 3:
                         filteredResults.setShortProductions(allprods.getShortProductions().stream().filter(
                                 production -> "game".equals(production.getType())).collect(Collectors.toList()));
                         filteredResults.setTotal(String.valueOf(filteredResults.getShortProductions().size()));
                         System.out.println(filteredResults);
-                        chooseTitle(filteredResults);
-                        break;
+                        return(filteredResults);
+
                     case 4:
                         int initialYear =0;
                         int finalYear=0;
@@ -91,26 +90,31 @@ public class FilterProduction {
                         }
                         if (filteredResults.getShortProductions().isEmpty()) {
                             System.out.println("No productions found in the selected range.");
+                            return null;
                         } else {
                             System.out.println("Filtered Results: " + filteredResults);
-                            chooseTitle(filteredResults);
+                            return(filteredResults); // retorna null aun teniendo los rangos bien
                         }
-                        break;
+
                 }
                 break;
             case 3:
-                MappingProductions.multipleMapping();
-                break;
+                return MappingProductions.multipleMapping();
+
             default:
                 System.out.println("Come back soon");
                 break;
         }
+        return null;
     }
 
-    public static void chooseTitle(MultipleProductions allprods){
+    public void chooseTitle(MultipleProductions allprods, Integer userId){
         System.out.println("Type title number :\n");
-        int selection = scanner.nextInt();
+        int selection = scanner.nextInt(); // numero de la produccion
+        // añadir al historial
+        System.out.println("user id "+ userId);
         allprods.getShortProductions().get(selection-1).play();
+        // producion repo instncias, buscar por caracteristicas, tomar el id y con el id de ambos instanciar la de history
 
         /*
         *
