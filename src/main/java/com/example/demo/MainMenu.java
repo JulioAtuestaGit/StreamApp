@@ -49,9 +49,11 @@ public class MainMenu implements CommandLineRunner {
 						switch (scanner.nextInt()){
 							case 1:
 								returnedProds = MappingProductions.multipleMapping();
+								System.out.println(":::::::::  MAIN LINEA 52  ::::::::::: "+returnedProds );
 								if(returnedProds.getTotal().equals("0")){break;}
 								returnedProds = filterProduction.filterProductions(returnedProds);
-								if(returnedProds.getTotal().equals("0")){break;}
+								System.out.println(":::::::::  MAIN LINEA 56  ::::::::::: "+returnedProds );
+								if(returnedProds.getShortProductions().isEmpty()){break;} /// no sirve porque despues del filtro de fecha solo se da valor al array shortP los otros valores quedan nulos
 								filterProduction.chooseTitle(returnedProds,userId);
 								break;
 							case 2:

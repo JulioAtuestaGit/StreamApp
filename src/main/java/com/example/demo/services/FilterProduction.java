@@ -108,12 +108,19 @@ public class FilterProduction {
         return null;
     }
 
-    public void chooseTitle(MultipleProductions allprods, Integer userId){
+    public void chooseTitle(MultipleProductions filteredProd, Integer userId){
+        System.out.println(":::::::: Choose Title :::::::\n");
         System.out.println("Type title number :\n");
         int selection = scanner.nextInt(); // numero de la produccion
-        // añadir al historial
+
         System.out.println("user id "+ userId);
-        allprods.getShortProductions().get(selection-1).play();
+        filteredProd.getShortProductions().get(selection-1).play();
+
+        // verificar en la db tabla de shortP si   filteredProd.getShortProductions().get(selection-1).play(); ya eesta guardada, si lo esta
+        //sacarla y tomar el id, para enviar ambos IDs a la tabla de historial
+        //si no lo esta guardarla en tabla de shortP
+        // añadir al historial los 2 IDs
+
         // producion repo instncias, buscar por caracteristicas, tomar el id y con el id de ambos instanciar la de history
 
         /*
