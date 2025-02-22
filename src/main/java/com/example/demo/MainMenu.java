@@ -13,12 +13,13 @@ public class MainMenu implements CommandLineRunner {
 	@Autowired
 	private IUserService iUserService;
 	@Autowired
-	UserSession session;
-
-	Scanner scanner = new Scanner(System.in);
-	MultipleProductions returnedProds;
-	FilterProduction filterProduction = new FilterProduction();
-	Integer userId;
+	private UserSession session;
+	@Autowired
+	private ProductionSelectionComponent selection;
+	private Scanner scanner = new Scanner(System.in);
+	private MultipleProductions returnedProds;
+	private FilterProduction filterProduction = new FilterProduction();
+	private Integer userId;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MainMenu.class, args);
@@ -54,7 +55,7 @@ public class MainMenu implements CommandLineRunner {
 								returnedProds = filterProduction.filterProductions(returnedProds);
 								System.out.println(":::::::::  MAIN LINEA 56  ::::::::::: "+returnedProds );
 								if(returnedProds.getShortProductions().isEmpty()){break;}
-								chooseTitle(returnedProds,userId);
+								selection.chooseTitle(returnedProds,userId);
 								break;
 							case 2:
 								/* metodo ver favoritos*/
