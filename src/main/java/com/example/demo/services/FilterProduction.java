@@ -107,37 +107,4 @@ public class FilterProduction {
         }
         return null;
     }
-
-    public void chooseTitle(MultipleProductions filteredProd, Integer userId){
-        System.out.println(":::::::: Choose Title :::::::\n");
-        System.out.println("Type title number :\n");
-        int selection = scanner.nextInt(); // numero de la produccion
-
-        System.out.println("user id "+ userId);
-        filteredProd.getShortProductions().get(selection-1).play();
-
-        // verificar en la db tabla de shortP si   filteredProd.getShortProductions().get(selection-1).play(); ya eesta guardada, si lo esta
-        //sacarla y tomar el id, para enviar ambos IDs a la tabla de historial
-        //si no lo esta guardarla en tabla de shortP
-        // añadir al historial los 2 IDs
-
-        // producion repo instncias, buscar por caracteristicas, tomar el id y con el id de ambos instanciar la de history
-
-        /*
-        *
-        * cambiar clase a non static y añadir injections para guardar productions a las tablas
-        *
-        *  Para cada resultado
-        * opcion para añadir a favoritos o ver
-        *
-        * eligiendo cualquiera de las dos opciones:
-        * Añadir la Shorty a la tabla
-        * Consultar la Api con La url especifica
-        * Añadir production completa a la tabla con la llave de la shorty
-        *
-        *  Añadir id de ususario y de shorty a la tabla de historial o a la de favoritos
-        *
-        * */
-
-    }
 }

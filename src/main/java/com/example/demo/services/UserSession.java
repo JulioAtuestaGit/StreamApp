@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 public  class UserSession {
     @Autowired
     IUserService iUserService;
-     Scanner scanner = new Scanner(System.in);
-     Users user;
+    Users user;
+    Scanner scanner = new Scanner(System.in);
 
     public  boolean signUp() {
         Users newUser = new Users();

@@ -53,8 +53,8 @@ public class MainMenu implements CommandLineRunner {
 								if(returnedProds.getTotal().equals("0")){break;}
 								returnedProds = filterProduction.filterProductions(returnedProds);
 								System.out.println(":::::::::  MAIN LINEA 56  ::::::::::: "+returnedProds );
-								if(returnedProds.getShortProductions().isEmpty()){break;} /// no sirve porque despues del filtro de fecha solo se da valor al array shortP los otros valores quedan nulos
-								filterProduction.chooseTitle(returnedProds,userId);
+								if(returnedProds.getShortProductions().isEmpty()){break;}
+								chooseTitle(returnedProds,userId);
 								break;
 							case 2:
 								/* metodo ver favoritos*/
