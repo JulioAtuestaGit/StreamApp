@@ -1,9 +1,5 @@
 package com.example.demo.services;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
 import java.util.List;
-import java.util.Optional;
 
 /*could be added to Users or UserService class, yet it would only work for one table
 * as an interface this can be implemented by all mapping classes for each table

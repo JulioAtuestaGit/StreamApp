@@ -13,8 +13,8 @@ public class ShortProductionServiceRepo implements IShortProductionService{
     private ICrudShortProductionRepo crudRepository;
 
     @Override
-    public ShortProduction isSaved(String title, String type, String year) {
-        return null;
+    public ShortProduction isSaved(String title, String type /*,String year*/) {
+        return crudRepository.isSaved(title,type/*,year*/);
     }
 
     @Override

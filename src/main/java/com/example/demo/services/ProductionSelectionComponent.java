@@ -40,7 +40,7 @@ public class ProductionSelectionComponent {
     public  void addProduction(){
         //PAso 1 verificar que la query jqpl si retorne algo, para eso retornamos el la fila completa
         /*verificar si la prodcution esta en la tabla, si no añadirla*/
-        ShortProduction result = shortProductionService.isSaved("31 minutos","series","2002-2014");
+        ShortProduction result = shortProductionService.isSaved("31 minutos","series"/*,"2002—2014"*/);
         System.out.println(result);
 
         if (result != null) {
