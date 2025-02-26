@@ -67,7 +67,7 @@ public class MainMenu implements CommandLineRunner {
 					}
 					break;
 				case 2:
-					if (session.signUp()) {
+					if (session.signUp()) { /// CAmbiar retornar el id
 						returnedProds = MappingProductions.multipleMapping();
 						returnedProds = filterProduction.filterProductions(returnedProds);
 						selection.chooseTitle(returnedProds);
@@ -89,11 +89,9 @@ public class MainMenu implements CommandLineRunner {
 
 }
 /*
-* 				Modificar Filter
 * 				Modificar Main menu
 * 				Modificar API
-*
-*				arreglar filtro de año
+**				sign up tiene que retornar el id
 *
 *
 * */

@@ -68,7 +68,6 @@ public class ProductionSelectionComponent {
             System.out.println("Production Saved");
             addToHistory();
         }
-        System.out.println("Seconf :::::::::");
 
         /*mo strar detalles de produccion añadiendo a la tabla mas grande*/
     }
