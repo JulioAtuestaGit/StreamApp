@@ -57,11 +57,12 @@ public class ProductionSelectionComponent {
     public  void isSaved(ShortProduction selectedProd, Integer userId){
         //PAso 1 verificar que la query jqpl si retorne algo, para eso retornamos el la fila completa
         /*verificar si la prodcution esta en la tabla, si no añadirla*/
-        ShortProduction result = shortProductionService.isSaved(selectedProd.getTitle(),selectedProd.getType());
-        System.out.println(result);
+        selectedProd = shortProductionService.isSaved(selectedProd.getTitle(),selectedProd.getType());
+        System.out.println(selectedProd);
 
-        if (result != null) {
-            System.out.println("Production found: " + result.getTitle());
+        if (selectedProd != null) {
+            System.out.println("Production found: " + selectedProd.getTitle());
+            System.out.println(":::::::::::::::pod ID "  + selectedProd.getId());
             addToHistory(userId,selectedProd.getId());
         } else {
             System.out.println("Production NOT found.");
@@ -85,7 +86,7 @@ public class ProductionSelectionComponent {
         if(historyService.isSaved(userId,productionId) != null){
             System.out.println("Already in history");
         }else {
-//            historyService.saveProd(userId,productionId);
+            historyService.saveProd(userId,productionId);
             System.out.println("Added to History");
         }
     }

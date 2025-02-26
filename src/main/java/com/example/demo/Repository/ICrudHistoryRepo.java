@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface ICrudHistoryRepo extends CrudRepository<UserHistory,Integer> {
     @Query("SELECT hs FROM UserHistory hs WHERE hs.userId = :userId AND hs.productionId = :productionId ")
     UserHistory isSaved (@Param("userId") Integer userId, @Param("productionId") Integer productionId);
-    //void saveProd (Integer userId, Integer productionId);
 }

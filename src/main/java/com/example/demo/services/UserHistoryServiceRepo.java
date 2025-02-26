@@ -11,13 +11,14 @@ public class UserHistoryServiceRepo implements IHistoryService{
     @Autowired
     ICrudHistoryRepo crudHistoryRepo;
 
- /*   @Override
+    @Override
     public void saveProd(Integer userId, Integer productionId) {
-       *//* UserHistory savingHistory = new UserHistory();
+        UserHistory savingHistory = new UserHistory();
         savingHistory.setUserId(userId);
         savingHistory.setProductionId(productionId);
-        crudHistoryRepo.save(savingHistory);*//*
-    }*/
+        crudHistoryRepo.save(savingHistory);
+        System.out.println("saving");
+    }
 
     @Override
     public UserHistory isSaved(Integer userId, Integer productionId) {
