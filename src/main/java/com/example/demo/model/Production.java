@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 
 
-@Entity
+//@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Production extends ShortProduction{
 

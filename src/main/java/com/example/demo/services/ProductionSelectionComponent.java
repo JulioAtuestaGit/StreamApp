@@ -5,10 +5,7 @@
 package com.example.demo.services;
 import com.example.demo.Repository.ICrudFavsRepo;
 import com.example.demo.Repository.ICrudHistoryRepo;
-import com.example.demo.model.MultipleProductions;
-import com.example.demo.model.ShortProduction;
-import com.example.demo.model.UserFavs;
-import com.example.demo.model.UserHistory;
+import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +14,11 @@ import java.util.Scanner;
 @Service
 public class ProductionSelectionComponent {
     @Autowired
-    private IProductionService<ShortProduction> iProductionService;
+    private IShortProductionService shortProductionService;
+/*
+    @Autowired
+    private IProductionService<Production> productionService;*/
+
     @Autowired
     private ICrudFavsRepo iCrudFavsRepo;
     @Autowired
@@ -37,7 +38,17 @@ public class ProductionSelectionComponent {
         System.out.println("user id "+ userId);
     }
     public  void addProduction(){
+        //PAso 1 verificar que la query jqpl si retorne algo, para eso retornamos el la fila completa
         /*verificar si la prodcution esta en la tabla, si no añadirla*/
+        ShortProduction result = shortProductionService.isSaved("31 minutos","series","2002-2014");
+        System.out.println(result);
+
+        if (result != null) {
+            System.out.println("Production found: " + result.getTitle());
+        } else {
+            System.out.println("Production NOT found.");
+        }
+
         /*mo strar detalles de produccion añadiendo a la tabla mas grande*/
     }
     public void addToFavs(){

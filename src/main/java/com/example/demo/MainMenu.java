@@ -61,6 +61,8 @@ public class MainMenu implements CommandLineRunner {
 								/* metodo ver favoritos*/
 							case 3:
 								/*metodo ver historial*/
+
+
 						}
 					}
 					break;
@@ -73,6 +75,9 @@ public class MainMenu implements CommandLineRunner {
 
 					MappingProductions.multipleMapping();
 					break;
+				default:
+					System.out.println("testing");
+					selection.addProduction();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
