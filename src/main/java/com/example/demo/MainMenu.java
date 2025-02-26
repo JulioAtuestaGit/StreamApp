@@ -68,7 +68,11 @@ public class MainMenu implements CommandLineRunner {
 					break;
 				case 2:
 					if (session.signUp()) {
-						MappingProductions.multipleMapping();
+						returnedProds = MappingProductions.multipleMapping();
+						returnedProds = filterProduction.filterProductions(returnedProds);
+						selection.chooseTitle(returnedProds);
+
+
 					}
 					break;
 				case 3:
@@ -76,8 +80,7 @@ public class MainMenu implements CommandLineRunner {
 					MappingProductions.multipleMapping();
 					break;
 				default:
-					System.out.println("testing");
-					selection.addProduction();
+
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

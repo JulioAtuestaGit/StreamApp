@@ -30,31 +30,58 @@ public class ProductionSelectionComponent {
 
     Scanner scanner = new Scanner(System.in);
 
-    public void chooseTitle(MultipleProductions filteredProd, Integer userId){
-        System.out.println(":::::::: Choose Title :::::::\n");
+    public void chooseTitle(MultipleProductions filteredProd){
         System.out.println("Type title number :\n");
         int selection = scanner.nextInt();
         filteredProd.getShortProductions().get(selection-1).play();
-        System.out.println("user id "+ userId);
     }
-    public  void addProduction(){
+
+    public void chooseTitle(MultipleProductions filteredProd, Integer userId){
+        ShortProduction selectedProd;
+        System.out.println(":::::::: Choose Title :::::::\n");
+        System.out.println("Type title number :\n");
+        int selection = scanner.nextInt();// aca ya elige
+        selectedProd = filteredProd.getShortProductions().get(selection-1);//va al final
+        isSaved(selectedProd,userId); // revisa si existe en la tabla de production si esta la añade a historial si no no la guarda y la añade a historual
+        System.out.println("user id "+ userId);
+        // preguntar si añadir a favs
+        System.out.println("Would you like to add :"+selectedProd.getTitle() +" to favorites ? : \n1- Yes \n2-No" );
+        selection =scanner.nextInt();
+        if (selection == 1){
+            addToFavs();
+        }
+        selectedProd.play();
+    }
+
+    public  void isSaved(ShortProduction selectedProd, Integer userId){
         //PAso 1 verificar que la query jqpl si retorne algo, para eso retornamos el la fila completa
         /*verificar si la prodcution esta en la tabla, si no añadirla*/
-        ShortProduction result = shortProductionService.isSaved("31 minutos","series"/*,"2002—2014"*/);
+        ShortProduction result = shortProductionService.isSaved(selectedProd.getTitle(),selectedProd.getType());
         System.out.println(result);
 
         if (result != null) {
             System.out.println("Production found: " + result.getTitle());
+            addToHistory();
         } else {
             System.out.println("Production NOT found.");
+            shortProductionService.saveData(selectedProd);
+            System.out.println("Production Saved");
+            addToHistory();
         }
+        System.out.println("Seconf :::::::::");
 
         /*mo strar detalles de produccion añadiendo a la tabla mas grande*/
     }
+
     public void addToFavs(){
-    /*mostrar opcion de añadir a los favs // añadirlo // verificar si existe ya en los favs o no*/
+        // verificar si existe ya en los favs o no*/
+    //añadirlo //
+        System.out.println("Added to favs");
     }
+
     public void addToHistory(){
-        /*añadir la production al history poruqe ya se empezo a ver // verificar si ya existe o no */
+        // verificar si ya existe o no en la tabla de historial*/
+        //añadir la production al history poruqe ya se empezo a ver
+        System.out.println("Added to History");
     }
 }

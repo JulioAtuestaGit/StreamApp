@@ -32,27 +32,23 @@ public class ShortProductionServiceRepo implements IShortProductionService{
         return crudRepository.getShortProductionByYear(year);
     }
 
-    public ShortProductionServiceRepo() {
-        super();
-    }
-
     @Override
     public void deleteData(ShortProduction data) {
-
+        crudRepository.delete(data);
     }
 
     @Override
     public void saveData(ShortProduction data) {
-
+        crudRepository.save(data);
     }
 
     @Override
     public ShortProduction getRowById(Integer id) {
-        return null;
+        return crudRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<ShortProduction> dataList() {
-        return List.of();
+        return  crudRepository.findAll();
     }
 }
