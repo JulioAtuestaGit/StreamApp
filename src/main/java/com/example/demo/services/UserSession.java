@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 public  class UserSession {
     @Autowired
     IUserService iUserService;
-     Scanner scanner = new Scanner(System.in);
-     Users user;
+    Users user;
+    Scanner scanner = new Scanner(System.in);
 
     public  boolean signUp() {
         Users newUser = new Users();
@@ -30,7 +30,9 @@ public  class UserSession {
                     2 -Sign up
                     """);
                 if(scanner.nextLine().equals("1")){
-                    return logIn(signUpEmail);
+
+                    if (logIn(signUpEmail) != null){return true;}
+                    return false;// por ahora queda como bool hay que cambiarlo
                 }
 
             }else {
@@ -51,12 +53,12 @@ public  class UserSession {
     }
 
 
-    public  boolean logIn() {
+    public  Integer logIn() {
         String logInEmail = askforEmail();
         return logIn(logInEmail);
     }
 
-    public  boolean logIn(String logInEmail) {
+    public  Integer logIn(String logInEmail) {
         String logInPassword;
         System.out.println("***Log in***");
         System.out.println("User's Password: ");
@@ -67,7 +69,7 @@ public  class UserSession {
                 //user exists
                 if (user.getUserPassword().equals(logInPassword)) {
                     System.out.println("Welcome " + user.getUserNickname());
-                    return true;
+                    return user.getId();
                 } else {
                     System.out.println("Incorrect password");
                     System.out.println("User's Password: ");
@@ -88,7 +90,7 @@ public  class UserSession {
                 }
             }
         }
-        return false;
+        return null;
     }
 
     public String askforEmail(){

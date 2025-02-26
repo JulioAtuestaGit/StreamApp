@@ -1,9 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.services.IDataService;
-import com.example.demo.services.IUserService;
-import com.example.demo.services.MappingProductions;
-import com.example.demo.services.UserSession;
+import com.example.demo.model.MultipleProductions;
+import com.example.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,9 +12,14 @@ import java.util.Scanner;
 public class MainMenu implements CommandLineRunner {
 	@Autowired
 	private IUserService iUserService;
-	Scanner scanner = new Scanner(System.in);
 	@Autowired
-	UserSession session;
+	private UserSession session;
+	@Autowired
+	private ProductionSelectionComponent selection;
+	private Scanner scanner = new Scanner(System.in);
+	private MultipleProductions returnedProds;
+	private FilterProduction filterProduction = new FilterProduction();
+	private Integer userId;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MainMenu.class, args);
@@ -36,19 +39,48 @@ public class MainMenu implements CommandLineRunner {
 			scanner.nextLine();
 			switch (mainMenu) {
 				case 1:
-					if (session.logIn()) {
-						MappingProductions.multipleMapping();
+					userId = session.logIn();
+					if (userId != null) {
+						System.out.println("""
+							Please Select an Option
+ 							1 - Search a Title
+ 							2 - Resume Watching
+ 							3 - View Favs
+							""");
+						switch (scanner.nextInt()){
+							case 1:
+								returnedProds = MappingProductions.multipleMapping();
+								System.out.println(":::::::::  MAIN LINEA 52  ::::::::::: "+returnedProds );
+								if(returnedProds.getTotal().equals("0")){break;}
+								returnedProds = filterProduction.filterProductions(returnedProds);
+								System.out.println(":::::::::  MAIN LINEA 56  ::::::::::: "+returnedProds );
+								if(returnedProds.getShortProductions().isEmpty()){break;}
+								selection.chooseTitle(returnedProds,userId);
+								break;
+							case 2:
+								/* metodo ver favoritos*/
+							case 3:
+								/*metodo ver historial*/
+
+
+						}
 					}
 					break;
 				case 2:
-					if (session.signUp()) {
-						MappingProductions.multipleMapping();
+					if (session.signUp()) { /// CAmbiar retornar el id
+						returnedProds = MappingProductions.multipleMapping();
+						returnedProds = filterProduction.filterProductions(returnedProds);
+						selection.chooseTitle(returnedProds);
+
+
 					}
 					break;
 				case 3:
 
 					MappingProductions.multipleMapping();
 					break;
+				default:
+
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -56,3 +88,10 @@ public class MainMenu implements CommandLineRunner {
 	}
 
 }
+/*
+* 				Modificar Main menu
+* 				Modificar API
+**				sign up tiene que retornar el id
+*
+*
+* */

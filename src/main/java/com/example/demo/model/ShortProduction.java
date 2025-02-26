@@ -31,7 +31,7 @@ public class ShortProduction{
         @Column(name = "production_type")
         private String type;
 
-
+    public Integer getId() {return id;}
     public String getTitle() {return title;}
     public String getYear() {return year;}
     public String getType() {return type;}
