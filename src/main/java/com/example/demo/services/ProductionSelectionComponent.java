@@ -22,7 +22,7 @@ public class ProductionSelectionComponent {
     @Autowired
     private ICrudFavsRepo iCrudFavsRepo;
     @Autowired
-    private ICrudHistoryRepo iCrudHistoryRepo;
+    private IHistoryService historyService;
 
     private ShortProduction productionToBeAdded;
     private UserHistory userHistory;
@@ -41,7 +41,8 @@ public class ProductionSelectionComponent {
         System.out.println(":::::::: Choose Title :::::::\n");
         System.out.println("Type title number :\n");
         int selection = scanner.nextInt();// aca ya elige
-        selectedProd = filteredProd.getShortProductions().get(selection-1);//va al final
+        selectedProd = filteredProd.getShortProductions().get(selection-1);
+
         isSaved(selectedProd,userId); // revisa si existe en la tabla de production si esta la añade a historial si no no la guarda y la añade a historual
         System.out.println("user id "+ userId);
         // preguntar si añadir a favs
@@ -61,12 +62,12 @@ public class ProductionSelectionComponent {
 
         if (result != null) {
             System.out.println("Production found: " + result.getTitle());
-            addToHistory();
+            addToHistory(userId,selectedProd.getId());
         } else {
             System.out.println("Production NOT found.");
             shortProductionService.saveData(selectedProd);
             System.out.println("Production Saved");
-            addToHistory();
+            addToHistory(userId,selectedProd.getId());
         }
 
         /*mo strar detalles de produccion añadiendo a la tabla mas grande*/
@@ -78,9 +79,14 @@ public class ProductionSelectionComponent {
         System.out.println("Added to favs");
     }
 
-    public void addToHistory(){
+    public void addToHistory(Integer userId, Integer productionId){
         // verificar si ya existe o no en la tabla de historial*/
         //añadir la production al history poruqe ya se empezo a ver
-        System.out.println("Added to History");
+        if(historyService.isSaved(userId,productionId) != null){
+            System.out.println("Already in history");
+        }else {
+//            historyService.saveProd(userId,productionId);
+            System.out.println("Added to History");
+        }
     }
 }
