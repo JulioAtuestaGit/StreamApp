@@ -20,7 +20,7 @@ public class ProductionSelectionComponent {
     private IProductionService<Production> productionService;*/
 
     @Autowired
-    private ICrudFavsRepo iCrudFavsRepo;
+    private IFavsService favsService;
     @Autowired
     private IHistoryService historyService;
 
@@ -49,7 +49,9 @@ public class ProductionSelectionComponent {
         System.out.println("Would you like to add :"+selectedProd.getTitle() +" to favorites ? : \n1- Yes \n2-No" );
         selection =scanner.nextInt();
         if (selection == 1){
-            addToFavs();
+            selectedProd = shortProductionService.isSaved(selectedProd.getTitle(),selectedProd.getType());
+            //needed as before this selected prod is mmaped from the api yet we dont know if it is in prod table thus we dont know its id
+            addToFavs(userId, selectedProd.getId());
         }
         selectedProd.play();
     }
@@ -74,10 +76,18 @@ public class ProductionSelectionComponent {
         /*mo strar detalles de produccion añadiendo a la tabla mas grande*/
     }
 
-    public void addToFavs(){
+    public void addToFavs(Integer userId, Integer productionId){
         // verificar si existe ya en los favs o no*/
     //añadirlo //
-        System.out.println("Added to favs");
+        if(favsService.isSaved(userId,productionId) != null){
+            System.out.println(":::::::"+userId +" : "+productionId);
+            favsService.deleteProd(userId,productionId);
+            System.out.println("Removed form favs");
+        }else {
+            System.out.println(":::::::"+userId +" : "+productionId);
+            favsService.saveProd(userId,productionId);
+            System.out.println("Added to FAvs");
+        }
     }
 
     public void addToHistory(Integer userId, Integer productionId){

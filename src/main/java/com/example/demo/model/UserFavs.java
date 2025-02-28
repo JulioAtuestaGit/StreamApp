@@ -21,6 +21,4 @@ public class UserFavs {
     private Integer userId;
     @Column(name = "production_id")
     private Integer productionId;
-
-
 }
