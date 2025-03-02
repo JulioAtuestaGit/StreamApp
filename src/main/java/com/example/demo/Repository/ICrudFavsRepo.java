@@ -11,5 +11,6 @@ import java.util.List;
 public interface ICrudFavsRepo extends CrudRepository<UserFavs, Integer>{
     @Query("SELECT uf FROM UserFavs uf WHERE uf.userId = :userId AND uf.productionId = :productionId ")
     UserFavs isSaved (@Param("userId") Integer userId, @Param("productionId") Integer productionId);
-    List<ShortProduction> findByUserId(Integer userID);
+    @Query("SELECT hs.productionId from UserFavs hs WHERE hs.userId = :userId")
+    List<Integer> findByUserId(@Param("userId") Integer userId);
     }

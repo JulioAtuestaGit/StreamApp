@@ -20,8 +20,8 @@ public class UserFavsServiceRepo implements IFavsService {
     }
 
     @Override
-    public List<ShortProduction> findByUserId(Integer userID) {
-        return crudFavsRepo.findByUserId(userID);  // crear query ?
+    public List<Integer> findByUserId(Integer userId) {
+        return crudFavsRepo.findByUserId(userId);
     }
 
     @Override

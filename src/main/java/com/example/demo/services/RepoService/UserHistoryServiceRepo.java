@@ -38,15 +38,13 @@ public class UserHistoryServiceRepo implements IHistoryService {
     }
 
     @Override
-    public List<UserHistory> findByUserId(Integer userId) {
-        List<UserHistory> userHistory= new ArrayList<UserHistory>();
-        crudHistoryRepo.findByUserId(userId);
-        return userHistory;
+    public List<Integer> findByUserId(Integer userId) {
+        return crudHistoryRepo.findByUserId(userId);
     }
 
     @Override
     public List<UserHistory> dataList() {
-        return List.of();
+        return crudHistoryRepo.findAll();
     }
 
     @Override

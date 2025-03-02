@@ -3,9 +3,11 @@ package com.example.demo.services;
 import com.example.demo.model.ShortProduction;
 import com.example.demo.services.Interfaces.IFavsService;
 import com.example.demo.services.Interfaces.IHistoryService;
+import com.example.demo.services.RepoService.ShortProductionServiceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,8 +16,16 @@ public class FavsServiceLogic {
     @Autowired
     private IFavsService favsService;
 
-    public void displayHistory(Integer userId){
-        List <ShortProduction> userHistory = favsService.findByUserId(userId);
+    @Autowired
+    private ShortProductionServiceRepo shortProductionServiceRepo;
+
+    public List<ShortProduction> displayFavs(Integer userId){
+        List<ShortProduction> userFavs = new ArrayList<ShortProduction>();
+        List <Integer> userfavsId = favsService.findByUserId(userId);
+        for(Integer id : userfavsId){
+            userFavs.add(shortProductionServiceRepo.getRowById(id));
+        }
+        return userFavs;
     }
 
     public void addToFavs(Integer userId, Integer productionId){

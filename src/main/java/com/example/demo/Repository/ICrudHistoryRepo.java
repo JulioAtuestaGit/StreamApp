@@ -11,13 +11,7 @@ import java.util.List;
 public interface ICrudHistoryRepo extends CrudRepository<UserHistory,Integer> {
     @Query("SELECT hs FROM UserHistory hs WHERE hs.userId = :userId AND hs.productionId = :productionId ")
     UserHistory isSaved (@Param("userId") Integer userId, @Param("productionId") Integer productionId);
-/*
-    @Query("SELECT hs from UserHistory hs WHERE hs.userId = :userId")
-    List<UserHistory> findByUserId(@Param("userId") Integer userId);
-*/
-
-
-    @Query(value = "SELECT * FROM user_history WHERE user_id = :userId", nativeQuery = true)
-    List<UserHistory> findByUserId(@Param("userId") Integer userId);
+    @Query(value = "SELECT production_id FROM user_history WHERE user_id = :userId", nativeQuery = true)
+    List<Integer> findByUserId(@Param("userId") Integer userId);
 
 }

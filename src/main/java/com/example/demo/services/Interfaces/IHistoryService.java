@@ -10,5 +10,5 @@ public interface IHistoryService extends IDataService<UserHistory>{
     UserHistory isSaved (@Param("userId") Integer userId, @Param("productionId") Integer productionId);
     void saveProd (Integer userId, Integer productionId);
     void deleteProd (Integer userId, Integer productionId);
-    List<UserHistory> findByUserId(@Param("userId") Integer userId);
+    List<Integer> findByUserId(@Param("userId") Integer userId);
 }
