@@ -2,6 +2,10 @@ package com.example.demo;
 
 import com.example.demo.model.MultipleProductions;
 import com.example.demo.services.*;
+import com.example.demo.services.Interfaces.IHistoryService;
+import com.example.demo.services.Interfaces.IUserService;
+import com.example.demo.services.ProductionLogic.FilterProduction;
+import com.example.demo.services.ProductionLogic.MappingProductions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +20,11 @@ public class MainMenu implements CommandLineRunner {
 	private UserSession session;
 	@Autowired
 	private ProductionSelectionComponent selection;
+	@Autowired
+	HistoryServiceLogic historyServiceLogic;
+	@Autowired
+	private FavsServiceLogic favsServiceLogic;
+
 	private Scanner scanner = new Scanner(System.in);
 	private MultipleProductions returnedProds;
 	private FilterProduction filterProduction = new FilterProduction();
@@ -58,10 +67,17 @@ public class MainMenu implements CommandLineRunner {
 								selection.chooseTitle(returnedProds,userId);
 								break;
 							case 2:
-								/* metodo ver favoritos*/
-							case 3:
-								/*metodo ver historial*/
+								//history
+								System.out.println("user id ::: main :::"+userId);
+								System.out.println(historyServiceLogic.displayHistory(userId));
 
+								//selection.chooseTitle(historyServiceLogic.displayHistory(userId));
+								break;
+							case 3:
+								//favs
+								System.out.println("user id ::: main :::"+userId);
+								System.out.println(favsServiceLogic.displayFavs(userId));
+								break;
 
 						}
 					}
@@ -71,7 +87,6 @@ public class MainMenu implements CommandLineRunner {
 						returnedProds = MappingProductions.multipleMapping();
 						returnedProds = filterProduction.filterProductions(returnedProds);
 						selection.chooseTitle(returnedProds);
-
 
 					}
 					break;

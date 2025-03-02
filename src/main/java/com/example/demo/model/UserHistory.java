@@ -11,16 +11,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Data
-//getters setters tostring and constructor implicitly added on basis form
 
 public class UserHistory {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//autoincremental
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "user_id")
     private Integer userId;
     @Column(name = "production_id")
     private Integer productionId;
-
-
 }

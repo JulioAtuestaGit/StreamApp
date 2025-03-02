@@ -1,13 +1,13 @@
-package com.example.demo.services;
-import com.example.demo.Repository.CrudRepository;
+package com.example.demo.services.RepoService;
 import com.example.demo.Repository.ICrudUserRepo;
 import com.example.demo.model.Users;
+import com.example.demo.services.Interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 /*Why do I need this class if we are only calling crud repository methods with no other logic/ it will it is possible to add extra logic to this  one but not to repo interfaces*/
 @Service
-public class UserServiceRepo implements IUserService{
+public class UserServiceRepo implements IUserService {
 
     @Autowired
     private ICrudUserRepo crudRepository; // Spring create an 'instance' of the type sent to the  interfaces

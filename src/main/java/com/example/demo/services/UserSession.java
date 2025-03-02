@@ -1,6 +1,8 @@
 package com.example.demo.services;
 import com.example.demo.model.Users;
 import java.util.Scanner;
+
+import com.example.demo.services.Interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -62,7 +64,7 @@ public  class UserSession {
         String logInPassword;
         System.out.println("***Log in***");
         System.out.println("User's Password: ");
-        logInPassword = scanner.nextLine();
+        logInPassword = scanner.nextLine().trim();
         while (true){
          user = iUserService.findByUserEmail(logInEmail);
             if (user != null) {
@@ -73,7 +75,7 @@ public  class UserSession {
                 } else {
                     System.out.println("Incorrect password");
                     System.out.println("User's Password: ");
-                    logInPassword = scanner.nextLine();
+                    logInPassword = scanner.nextLine().trim();
                 }
         } else {
                 System.out.println("there is no account under that Email:");
@@ -81,10 +83,10 @@ public  class UserSession {
                         1- enter new email
                         2 exit
                         """);
-                if(scanner.nextLine().equals("1")){
+                if(scanner.nextLine().trim().equals("1")){
                     logInEmail = askforEmail();
                     System.out.println("User's Password: ");
-                    logInPassword = scanner.nextLine();
+                    logInPassword = scanner.nextLine().trim();
                 }else {
                     break;
                 }
@@ -97,7 +99,7 @@ public  class UserSession {
         String emailReceived;
         while (true){
             System.out.println("Enter Email");
-            emailReceived =scanner.nextLine();
+            emailReceived =scanner.nextLine().trim();
             if(emailReceived.contains("@") && emailReceived.contains(".")){
                 return emailReceived;
             }
