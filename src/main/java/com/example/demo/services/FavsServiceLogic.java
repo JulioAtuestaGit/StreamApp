@@ -15,6 +15,7 @@ public class FavsServiceLogic {
     private IFavsService favsService;
 
     public void displayHistory(Integer userId){
+        List <ShortProduction> userHistory = favsService.findByUserId(userId);
     }
 
     public void addToFavs(Integer userId, Integer productionId){

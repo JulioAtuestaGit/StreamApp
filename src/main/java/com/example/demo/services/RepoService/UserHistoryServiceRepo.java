@@ -38,8 +38,8 @@ public class UserHistoryServiceRepo implements IHistoryService {
     }
 
     @Override
-    public List<ShortProduction> findByUserId(Integer userId) {
-        List<ShortProduction> userHistory= new ArrayList<ShortProduction>();
+    public List<UserHistory> findByUserId(Integer userId) {
+        List<UserHistory> userHistory= new ArrayList<UserHistory>();
         crudHistoryRepo.findByUserId(userId);
         return userHistory;
     }

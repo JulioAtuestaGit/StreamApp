@@ -1,10 +1,13 @@
 package com.example.demo.services.RepoService;
 
 import com.example.demo.Repository.ICrudFavsRepo;
+import com.example.demo.model.ShortProduction;
 import com.example.demo.model.UserFavs;
 import com.example.demo.services.Interfaces.IFavsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserFavsServiceRepo implements IFavsService {
@@ -13,8 +16,12 @@ public class UserFavsServiceRepo implements IFavsService {
 
     @Override
     public UserFavs isSaved(Integer userId, Integer productionId) {
-
         return crudFavsRepo.isSaved(userId,productionId);
+    }
+
+    @Override
+    public List<ShortProduction> findByUserId(Integer userID) {
+        return crudFavsRepo.findByUserId(userID);  // crear query ?
     }
 
     @Override
@@ -33,4 +40,5 @@ public class UserFavsServiceRepo implements IFavsService {
             crudFavsRepo.delete(removeFav);
         }
     }
+
 }

@@ -21,8 +21,6 @@ public class ProductionSelectionComponent {
 
     @Autowired
     private IFavsService favsService;
-/*    @Autowired
-    private IHistoryService historyService;*/
     @Autowired
     private HistoryServiceLogic historyService;
     @Autowired
@@ -80,18 +78,4 @@ public class ProductionSelectionComponent {
 
         /*mo strar detalles de produccion añadiendo a la tabla mas grande*/
     }
-
-/*    public void addToFavs(Integer userId, Integer productionId){
-        // verificar si existe ya en los favs o no
-    //añadirlo //
-        if(favsService.isSaved(userId,productionId) != null){
-            System.out.println(":::::::"+userId +" : "+productionId);
-            favsService.deleteProd(userId,productionId);
-            System.out.println("Removed form favs");
-        }else {
-            System.out.println(":::::::"+userId +" : "+productionId);
-            favsService.saveProd(userId,productionId);
-            System.out.println("Added to FAvs");
-        }
-    }*/
 }

@@ -19,6 +19,10 @@ public class MainMenu implements CommandLineRunner {
 	private UserSession session;
 	@Autowired
 	private ProductionSelectionComponent selection;
+	@Autowired
+	HistoryServiceLogic historyServiceLogic;
+
+
 	private Scanner scanner = new Scanner(System.in);
 	private MultipleProductions returnedProds;
 	private FilterProduction filterProduction = new FilterProduction();
@@ -61,11 +65,13 @@ public class MainMenu implements CommandLineRunner {
 								selection.chooseTitle(returnedProds,userId);
 								break;
 							case 2:
-								/* metodo ver favoritos*/
+								System.out.println("user id ::: main :::"+userId);
+								System.out.println(
+								historyServiceLogic.displayHistory(userId));
+
+
 							case 3:
-								/*metodo ver historial*/
-
-
+								/* metodo ver favoritos*/
 						}
 					}
 					break;
