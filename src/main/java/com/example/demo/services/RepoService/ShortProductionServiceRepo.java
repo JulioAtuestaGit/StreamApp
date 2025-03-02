@@ -1,13 +1,14 @@
-package com.example.demo.services;
+package com.example.demo.services.RepoService;
 
 import com.example.demo.Repository.ICrudShortProductionRepo;
 import com.example.demo.model.ShortProduction;
+import com.example.demo.services.Interfaces.IShortProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("productionServiceRepoShortProduction")
-public class ShortProductionServiceRepo implements IShortProductionService{
+public class ShortProductionServiceRepo implements IShortProductionService {
 
     @Autowired
     private ICrudShortProductionRepo crudRepository;

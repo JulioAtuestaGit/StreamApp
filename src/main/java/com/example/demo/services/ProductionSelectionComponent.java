@@ -3,9 +3,9 @@
 * add production to favorites
 * */
 package com.example.demo.services;
-import com.example.demo.Repository.ICrudFavsRepo;
-import com.example.demo.Repository.ICrudHistoryRepo;
 import com.example.demo.model.*;
+import com.example.demo.services.Interfaces.IFavsService;
+import com.example.demo.services.Interfaces.IShortProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +21,12 @@ public class ProductionSelectionComponent {
 
     @Autowired
     private IFavsService favsService;
+/*    @Autowired
+    private IHistoryService historyService;*/
     @Autowired
-    private IHistoryService historyService;
-
+    private HistoryServiceLogic historyService;
+    @Autowired
+    private FavsServiceLogic favsServiceLogic;
     private ShortProduction productionToBeAdded;
     private UserHistory userHistory;
     private UserFavs userFavs;
@@ -51,33 +54,35 @@ public class ProductionSelectionComponent {
         if (selection == 1){
             selectedProd = shortProductionService.isSaved(selectedProd.getTitle(),selectedProd.getType());
             //needed as before this selected prod is mmaped from the api yet we dont know if it is in prod table thus we dont know its id
-            addToFavs(userId, selectedProd.getId());
+            favsServiceLogic.addToFavs(userId, selectedProd.getId());
         }
         selectedProd.play();
     }
 
-    public  void isSaved(ShortProduction selectedProd, Integer userId){
+    public  void isSaved(ShortProduction filteredProd, Integer userId){
         //PAso 1 verificar que la query jqpl si retorne algo, para eso retornamos el la fila completa
         /*verificar si la prodcution esta en la tabla, si no añadirla*/
-        selectedProd = shortProductionService.isSaved(selectedProd.getTitle(),selectedProd.getType());
+        ShortProduction selectedProd = shortProductionService.isSaved(filteredProd.getTitle(),filteredProd.getType());
         System.out.println(selectedProd);
 
         if (selectedProd != null) {
             System.out.println("Production found: " + selectedProd.getTitle());
             System.out.println(":::::::::::::::pod ID "  + selectedProd.getId());
-            addToHistory(userId,selectedProd.getId());
+            historyService.addToHistory(userId,selectedProd.getId());
         } else {
             System.out.println("Production NOT found.");
-            shortProductionService.saveData(selectedProd);
+            System.out.println(filteredProd);
+            shortProductionService.saveData(filteredProd); //Entity must not be null error
             System.out.println("Production Saved");
-            addToHistory(userId,selectedProd.getId());
+            selectedProd = shortProductionService.isSaved(filteredProd.getTitle(),filteredProd.getType());//para tomar el ID recien generado
+            historyService.addToHistory(userId,selectedProd.getId());
         }
 
         /*mo strar detalles de produccion añadiendo a la tabla mas grande*/
     }
 
-    public void addToFavs(Integer userId, Integer productionId){
-        // verificar si existe ya en los favs o no*/
+/*    public void addToFavs(Integer userId, Integer productionId){
+        // verificar si existe ya en los favs o no
     //añadirlo //
         if(favsService.isSaved(userId,productionId) != null){
             System.out.println(":::::::"+userId +" : "+productionId);
@@ -88,16 +93,5 @@ public class ProductionSelectionComponent {
             favsService.saveProd(userId,productionId);
             System.out.println("Added to FAvs");
         }
-    }
-
-    public void addToHistory(Integer userId, Integer productionId){
-        // verificar si ya existe o no en la tabla de historial*/
-        //añadir la production al history poruqe ya se empezo a ver
-        if(historyService.isSaved(userId,productionId) != null){
-            System.out.println("Already in history");
-        }else {
-            historyService.saveProd(userId,productionId);
-            System.out.println("Added to History");
-        }
-    }
+    }*/
 }

@@ -1,6 +1,8 @@
 package com.example.demo.services;
 import com.example.demo.model.Users;
 import java.util.Scanner;
+
+import com.example.demo.services.Interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

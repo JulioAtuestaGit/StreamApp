@@ -1,12 +1,13 @@
-package com.example.demo.services;
+package com.example.demo.services.RepoService;
 
 import com.example.demo.Repository.ICrudFavsRepo;
 import com.example.demo.model.UserFavs;
+import com.example.demo.services.Interfaces.IFavsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserFavsServiceRepo implements IFavsService{
+public class UserFavsServiceRepo implements IFavsService {
     @Autowired
     ICrudFavsRepo crudFavsRepo;
 

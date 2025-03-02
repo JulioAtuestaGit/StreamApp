@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.services.Interfaces;
 import java.util.List;
 
 /*could be added to Users or UserService class, yet it would only work for one table

@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.demo.services.Interfaces;
 import com.example.demo.model.ShortProduction;
 import org.springframework.data.repository.query.Param;
 
