@@ -20,8 +20,8 @@ public class UserFavsServiceRepo implements IFavsService {
     }
 
     @Override
-    public List<Integer> findByUserId(Integer userId) {
-        return crudFavsRepo.findByUserId(userId);
+    public List<ShortProduction> findProductionsByUserId(Integer userId) {
+        return crudFavsRepo.findProductionsByUserId(userId);
     }
 
     @Override

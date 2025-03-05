@@ -13,5 +13,8 @@ public interface ICrudHistoryRepo extends CrudRepository<UserHistory,Integer> {
     UserHistory isSaved (@Param("userId") Integer userId, @Param("productionId") Integer productionId);
     @Query(value = "SELECT production_id FROM user_history WHERE user_id = :userId", nativeQuery = true)
     List<Integer> findByUserId(@Param("userId") Integer userId);
+    @Query("SELECT sp FROM ShortProduction sp JOIN UserHistory uh ON sp.id = uh.productionId WHERE uh.userId = :userId")
+    List<ShortProduction> findHisByUserId(@Param("userId") Integer userId);
+
 
 }
