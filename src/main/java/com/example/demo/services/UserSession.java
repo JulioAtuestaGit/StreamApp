@@ -16,7 +16,7 @@ public  class UserSession {
     Users user;
     Scanner scanner = new Scanner(System.in);
 
-    public  boolean signUp() {
+    public  Integer signUp() {
         Users newUser = new Users();
         String signUpEmail;
         String signUpPassword;
@@ -32,9 +32,9 @@ public  class UserSession {
                     2 -Sign up
                     """);
                 if(scanner.nextLine().equals("1")){
-
-                    if (logIn(signUpEmail) != null){return true;}
-                    return false;// por ahora queda como bool hay que cambiarlo
+                    Integer id =logIn(signUpEmail);
+                    if ( id!= null){return id;}
+                    return null;
                 }
 
             }else {
@@ -51,7 +51,7 @@ public  class UserSession {
                 break;
             }
         }
-        return true;
+        return newUser.getId();
     }
 
 

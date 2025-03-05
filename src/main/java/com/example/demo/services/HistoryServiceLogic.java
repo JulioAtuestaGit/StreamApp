@@ -18,16 +18,6 @@ public class HistoryServiceLogic {
     @Autowired
     private ShortProductionServiceRepo shortProductionServiceRepo;
 
-/*    public List<ShortProduction> displayHistory(Integer userId) {
-        List<ShortProduction> resumeWatching = new ArrayList<ShortProduction>();
-        List<Integer> historyProdId = historyService.findByUserId(userId);
-        for (Integer id : historyProdId) {
-            resumeWatching.add(shortProductionServiceRepo.getRowById(id));
-       }
-        return resumeWatching;
-        findHisByUserId
-    }*/
-
     public List<ShortProduction> displayHistory(Integer userId) {
         return historyService.findHisByUserId(userId);
     }

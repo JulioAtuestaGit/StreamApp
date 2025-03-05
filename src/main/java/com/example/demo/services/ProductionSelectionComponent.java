@@ -38,7 +38,13 @@ public class ProductionSelectionComponent {
         filteredProd.getShortProductions().get(selection-1).play();
     }
     public void chooseTitle(List<ShortProduction> filteredProd){
+        StringBuilder prodList = new StringBuilder();
+        for (int i=0; i<filteredProd.size() ;i++){
+            prodList.append(i+1).append("- ").append(filteredProd.get(i).getTitle()).append("\n");
+        }
+        System.out.println(prodList);
         System.out.println("Type title number :\n");
+
         int selection = scanner.nextInt();
         filteredProd.get(selection-1).play();
     }
