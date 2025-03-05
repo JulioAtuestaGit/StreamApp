@@ -20,12 +20,9 @@ public class FavsServiceLogic {
     private ShortProductionServiceRepo shortProductionServiceRepo;
 
     public List<ShortProduction> displayFavs(Integer userId){
-        List<ShortProduction> userFavs = new ArrayList<ShortProduction>();
-        List <Integer> userfavsId = favsService.findByUserId(userId);
-        for(Integer id : userfavsId){
-            userFavs.add(shortProductionServiceRepo.getRowById(id));
-        }
-        return userFavs;
+        List <ShortProduction> userfavsId = favsService.findProductionsByUserId(userId);
+        System.out.println("userFavs::::::::"+userfavsId);
+        return userfavsId;
     }
 
     public void addToFavs(Integer userId, Integer productionId){

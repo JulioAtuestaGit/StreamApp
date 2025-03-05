@@ -9,6 +9,6 @@ public interface IFavsService {
     UserFavs isSaved (@Param("userId") Integer userId, @Param("productionId") Integer productionId);
     void saveProd (Integer userId, Integer productionId);
     void deleteProd (Integer userId, Integer productionId);
-    List<Integer> findByUserId(@Param("userId") Integer userId);
+    List<ShortProduction> findProductionsByUserId(@Param("userId") Integer userId);
 
 }

@@ -9,6 +9,7 @@ import com.example.demo.services.Interfaces.IShortProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Scanner;
 
 @Service
@@ -35,6 +36,11 @@ public class ProductionSelectionComponent {
         System.out.println("Type title number :\n");
         int selection = scanner.nextInt();
         filteredProd.getShortProductions().get(selection-1).play();
+    }
+    public void chooseTitle(List<ShortProduction> filteredProd){
+        System.out.println("Type title number :\n");
+        int selection = scanner.nextInt();
+        filteredProd.get(selection-1).play();
     }
 
     public void chooseTitle(MultipleProductions filteredProd, Integer userId){

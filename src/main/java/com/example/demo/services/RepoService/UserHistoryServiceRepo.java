@@ -43,6 +43,11 @@ public class UserHistoryServiceRepo implements IHistoryService {
     }
 
     @Override
+    public List<ShortProduction> findHisByUserId(Integer userId) {
+        return crudHistoryRepo.findHisByUserId(userId);
+    }
+
+    @Override
     public List<UserHistory> dataList() {
         return crudHistoryRepo.findAll();
     }

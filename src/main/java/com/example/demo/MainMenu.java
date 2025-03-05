@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.model.MultipleProductions;
+import com.example.demo.model.ShortProduction;
 import com.example.demo.services.*;
 import com.example.demo.services.Interfaces.IHistoryService;
 import com.example.demo.services.Interfaces.IUserService;
@@ -10,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.List;
 import java.util.Scanner;
+
 
 @SpringBootApplication
 public class MainMenu implements CommandLineRunner {
@@ -59,26 +63,32 @@ public class MainMenu implements CommandLineRunner {
 						switch (scanner.nextInt()){
 							case 1:
 								returnedProds = MappingProductions.multipleMapping();
-								System.out.println(":::::::::  MAIN LINEA 52  ::::::::::: "+returnedProds );
 								if(returnedProds.getTotal().equals("0")){break;}
 								returnedProds = filterProduction.filterProductions(returnedProds);
-								System.out.println(":::::::::  MAIN LINEA 56  ::::::::::: "+returnedProds );
 								if(returnedProds.getShortProductions().isEmpty()){break;}
 								selection.chooseTitle(returnedProds,userId);
 								break;
-							case 2:
-								//history
-								System.out.println("user id ::: main :::"+userId);
-								System.out.println(historyServiceLogic.displayHistory(userId));
 
-								//selection.chooseTitle(historyServiceLogic.displayHistory(userId));
-								break;
-							case 3:
-								//favs
-								System.out.println("user id ::: main :::"+userId);
-								System.out.println(favsServiceLogic.displayFavs(userId));
+							case 2://history
+								StringBuilder historyList = new StringBuilder();
+								List <ShortProduction> returnedHistory = historyServiceLogic.displayHistory(userId);
+								for (int i=0; i<returnedHistory.size() ;i++){
+									historyList.append(i+1).append("- ").append(returnedHistory.get(i).getTitle()).append("\n");
+								}
+								System.out.println(historyList);
+								selection.chooseTitle(returnedHistory);
 								break;
 
+							case 3://favs
+								StringBuilder favsList = new StringBuilder();
+								List <ShortProduction> returnedFavs = favsServiceLogic.displayFavs(userId);
+								System.out.println(returnedFavs);
+								for (int i=0; i<returnedFavs.size() ;i++){
+									favsList.append(i+1).append("- ").append(returnedFavs.get(i).getTitle()).append("\n");
+								}
+								System.out.println("main list: "+favsList);
+								selection.chooseTitle(returnedFavs);
+								break;
 						}
 					}
 					break;
@@ -87,15 +97,12 @@ public class MainMenu implements CommandLineRunner {
 						returnedProds = MappingProductions.multipleMapping();
 						returnedProds = filterProduction.filterProductions(returnedProds);
 						selection.chooseTitle(returnedProds);
-
 					}
 					break;
 				case 3:
-
 					MappingProductions.multipleMapping();
 					break;
 				default:
-
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
