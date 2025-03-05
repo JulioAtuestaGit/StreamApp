@@ -99,10 +99,3 @@ public class MainMenu implements CommandLineRunner {
 	}
 
 }
-/*
-* 				Modificar Main menu
-* 				Modificar API
-**				sign up tiene que retornar el id
-*
-*
-* */
