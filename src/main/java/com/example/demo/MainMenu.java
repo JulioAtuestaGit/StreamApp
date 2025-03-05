@@ -3,7 +3,6 @@ package com.example.demo;
 import com.example.demo.model.MultipleProductions;
 import com.example.demo.model.ShortProduction;
 import com.example.demo.services.*;
-import com.example.demo.services.Interfaces.IHistoryService;
 import com.example.demo.services.Interfaces.IUserService;
 import com.example.demo.services.ProductionLogic.FilterProduction;
 import com.example.demo.services.ProductionLogic.MappingProductions;
@@ -70,33 +69,23 @@ public class MainMenu implements CommandLineRunner {
 								break;
 
 							case 2://history
-								StringBuilder historyList = new StringBuilder();
 								List <ShortProduction> returnedHistory = historyServiceLogic.displayHistory(userId);
-								for (int i=0; i<returnedHistory.size() ;i++){
-									historyList.append(i+1).append("- ").append(returnedHistory.get(i).getTitle()).append("\n");
-								}
-								System.out.println(historyList);
 								selection.chooseTitle(returnedHistory);
 								break;
 
 							case 3://favs
-								StringBuilder favsList = new StringBuilder();
 								List <ShortProduction> returnedFavs = favsServiceLogic.displayFavs(userId);
-								System.out.println(returnedFavs);
-								for (int i=0; i<returnedFavs.size() ;i++){
-									favsList.append(i+1).append("- ").append(returnedFavs.get(i).getTitle()).append("\n");
-								}
-								System.out.println("main list: "+favsList);
 								selection.chooseTitle(returnedFavs);
 								break;
 						}
 					}
 					break;
 				case 2:
-					if (session.signUp()) { /// CAmbiar retornar el id
+					Integer id = session.signUp();
+					if ( id!= null) {
 						returnedProds = MappingProductions.multipleMapping();
 						returnedProds = filterProduction.filterProductions(returnedProds);
-						selection.chooseTitle(returnedProds);
+						selection.chooseTitle(returnedProds,id);
 					}
 					break;
 				case 3:
